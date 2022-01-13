@@ -1,10 +1,12 @@
 # dryb
 *"Fall Into the Internet"*
+
 ## A Full Stack form web application by:
-- Annika Truong ([Github](#) | [/In](#))
-- Christopher Bowers ([Github](#) | [/In](#))
-- Christopher Zeas ([Github](#) | [/In](#))
-- Cristen Negron ([Github](#) | [/In](#))
+
+- Annika Truong ([Github](https://github.com/atruong0914) | [/In](https://www.linkedin.com/in/annikatruong/))
+- Christopher Bowers ([Github](https://github.com/christopherbowers) | [/In](https://www.linkedin.com/in/christopher-bowers-dev))
+- Christopher Zeas ([Github](https://github.com/chriszc97) | [/In](www.linkedin.com/in/christopher-zeas))
+- Cristen Negron ([Github](https://github.com/cristennegron) | [/In](https://www.linkedin.com/in/cristennegron/))
 
 ## Technologies
 
