@@ -2,16 +2,22 @@
   "development": {
     "database": "drby_development",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "username": "annika",
+    "password": null
   },
   "test": {
     "database": "drby_test",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "username": "annika",
+    "password": null
   },
   "production": {
     "database": "drby_production",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "username": "annika",
+    "password": null
   }
 }
