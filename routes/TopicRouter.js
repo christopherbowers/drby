@@ -1,6 +1,7 @@
-const { Router } = require("express");
+const Router = require('express').Router()
 const controller = require('../controllers/TopicController')
 
+Router.get('/', controller.getAllTopics)
+Router.get('/:id', controller.getTopicById)
 
-Router.get('/topics', controller.getAllTopics)
-Router.get('/topics/:id', controller.getTopicById)
+module.exports = Router

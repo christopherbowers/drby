@@ -1,42 +1,28 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const logger = require('morgan');
-const path = require('path');
-// const dotenv = require('dotenv');
-const Pool = require('pg').Pool;
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const logger = require('morgan')
+const path = require('path')
+const dotenv = require('dotenv')
 
-const isProduction = process.env.NODE_ENV === 'production';
-const connectionString = `postgresql://${process.env.PG_USER}:${process.env.PG_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${process.env.PG_DATABASE}`;
-const pool = new Pool({
-  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
+const PORT = process.env.PORT || 3001
+const app = express()
 
-module.exports = pool;
-const PORT =
-  process.env.NODE_ENV === 'production' ? `${process.env.PG_PORT}` : 3001;
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(logger('dev'))
 
-const AppRouter = require('./routes/AppRouter'); // Uncomment this once AppRouter is setup
+const AppRouter = require('./routes/AppRouter')
 
-const app = express();
-
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(logger('dev'));
-
-app.get('/', (req, res) => res.json({ message: 'Server Works' }));
-
-app.use('/api', AppRouter); // Uncomment this once AppRouter is setup
+app.get('/', (req, res) => res.json({ message: 'Server Works' }))
+app.use('/api', AppRouter)
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.use(express.static(path.join(__dirname, 'client/build')))
   app.get('*', (req, res) => {
-    res.sendFile(path.join(`${__dirname}/client/build/index.html`));
-  });
+    res.sendFile(path.join(`${__dirname}/client/build/index.html`))
+  })
 }
 
-app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`));
+app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))

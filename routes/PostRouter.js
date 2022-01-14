@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const Router = require('express').Router()
 const controller = require('../controllers/PostController')
 
 Router.get('/posts', controller.getAllPosts)
@@ -9,3 +9,5 @@ Router.post('/posts', controller.createPost)
 Router.put('/posts/:id', controller.updatePost)
 
 Router.delete('/posts/:id', controller.deletePost)
+
+module.exports = Router
