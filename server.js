@@ -16,7 +16,7 @@ const pool = new Pool({
 })
 
 module.exports = pool
-const PORT = process.env.PG_PORT || 3001
+const PORT = process.env.PORT || 3001
 
 // const AppRouter = require('./routes/AppRouter') // Uncomment this once AppRouter is setup
 
