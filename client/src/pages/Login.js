@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogInUser } from '../services/Auth'
 import kirby from '../assets/kirby.gif'
+import styled from 'styled-components'
 
 export default function Login(props) {
   const navigate = useNavigate()
@@ -26,10 +27,10 @@ export default function Login(props) {
   }
 
   return (
-    <>
+    <Wrapper>
       <div className='login-page'>
         <div className='login-icon'>
-          <img src={kirby} />
+          <img src={kirby} alt="kirby" />
         </div>
         <form className='login-form' onSubmit={handleSubmit}>
           <div className='input-box'>
@@ -58,6 +59,11 @@ export default function Login(props) {
           </button>
         </form>
       </div>
-    </>
+    </Wrapper>
   )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`
