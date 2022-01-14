@@ -9,7 +9,7 @@ const getAllTopics = async (req, res) => {
     }
     }
 
-const getTopicsById = async (req, res) => {
+const getTopicById = async (req, res) => {
     try {
         const res = await Topic.findByPk(req.params.topic_id)
         res.send(res)
@@ -21,5 +21,5 @@ const getTopicsById = async (req, res) => {
 
     module.exports = {
         getAllTopics,
-        getTopicsById
+        getTopicById
     }
