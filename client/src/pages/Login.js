@@ -38,6 +38,7 @@ export default function LogIn(props){
             value={formValues.email}
             required
            />
+        </div>
         <div className='input-box'>
           <h2 className='password'>Password</h2>
           <input
@@ -48,7 +49,9 @@ export default function LogIn(props){
             required
           />
         </div>
-        </div>
+        <button disabled={!formValues.email || !formValues.password}>
+          Log In
+        </button>
       </form>
     </div>
     </>
