@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LogInUser } from '../services/Auth';
 
 export default function LogIn(props){
   const [formValues, setFormValues] = useState({ email: '', password: '' })
