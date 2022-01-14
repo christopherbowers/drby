@@ -34,7 +34,7 @@ export default function LogIn(props){
             onChange={handleChange}
             name='email'
             type='email'
-            placeholder='name@email.com'
+            placeholder='kirby@email.com'
             value={formValues.email}
             required
            />
