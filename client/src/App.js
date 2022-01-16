@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import GlobalStyle from './components/GlobalStyle'
-import logo from './assets/drby.svg'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
 
@@ -13,7 +15,11 @@ function App() {
   return (
   <>
     <GlobalStyle />
-    <img src={logo} alt="drby" />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+    </Routes>
   </>
   )
 }
