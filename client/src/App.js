@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import GlobalStyle from './components/GlobalStyle'
 import Home from './pages/Home'
@@ -11,13 +11,22 @@ function App() {
     document.title = 'drby'
   }, [])
 
+  const [authenticated, toggleAuthenticated] = useState(false)
+  const [user, setUser] = useState(null)
 
   return (
   <>
     <GlobalStyle />
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <Login
+          setUser={setUser}
+          toggleAuthenticated={toggleAuthenticated}
+          /> }
+      />
       <Route path="/register" element={<Register />} />
     </Routes>
   </>
