@@ -57,6 +57,9 @@ export default function Login(props) {
           <button disabled={!formValues.email || !formValues.password}>
             Log In
           </button>
+          <button onClick={ () => {navigate('/register')} }>
+            Register
+          </button>
         </form>
       </div>
     </Wrapper>

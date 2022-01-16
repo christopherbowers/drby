@@ -1,4 +1,5 @@
 import Client from './api'
+import axios from 'axios'
 
 export const LogInUser = async (data) => {
   try {
@@ -13,7 +14,8 @@ export const LogInUser = async (data) => {
 
 export const RegisterUser = async (data) => {
   try {
-    const res = await Client.post('/api/auth/register', data)
+    const res = await axios.post('/api/auth/register', data)
+    console.log(data)
     return res.data
   } catch (error) {
     throw error
