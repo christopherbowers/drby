@@ -11,17 +11,17 @@ const PORT = process.env.PORT || 3001
 const app = express()
 
 app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(logger('dev'))
-
-// app.get('/', (req, res) => res.json({ message: 'Server Works' }))
-app.use('/api', AppRouter)
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(logger('dev'))
+  .use('/api', AppRouter)
 
 
-app.use(express.static(path.join(__dirname, 'client/build')))
-app.get('*', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/client/build/index.html`))
-})
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')))
+    .get('*', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/client/build/index.html`))
+  })
+}
 
 app.listen(PORT, () => console.log(`Server Started On Port: ${PORT}`))
