@@ -42,10 +42,11 @@ export default function App() {
           toggleAuthenticated={toggleAuthenticated}
           /> }
       />
-      <Route
+      {/*<Route
         path="/home"
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
-      />
+      />*/}
+      <Route path="/home" element={<Home />}/>
       <Route path="/register" element={<Register />} />
     </Routes>
 
