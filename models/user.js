@@ -28,7 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       passwordDigest: {
         type: DataTypes.STRING,
         allowNull: false
-      }
+      },
+      postId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE'
+      },
     },
     {
       sequelize,
