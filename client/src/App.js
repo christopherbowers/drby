@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Post from './pages/Post'
 import { CheckSession } from './services/Auth'
 
 
@@ -47,6 +48,7 @@ export default function App() {
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
       <Route path="/home" element={<Home />}/>
+      <Route path="/:topic/posts/:id" element={<Post />}/>
       <Route path="/register" element={<Register />} />
     </Routes>
 

@@ -13,7 +13,7 @@ export default function CreatePost(){
         const imgURL = event.target.imgURL.value;
 
         const test = await axios.post(
-            `http://localhost:3001/api/topics/${id}/`
+            `http://localhost:3001/api/posts`
         )
     }
 }
