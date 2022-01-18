@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     upvote: DataTypes.NUMBER,
     downvote: DataTypes.NUMBER,
     imgURL: DataTypes.STRING,
+    topicId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE'
+    },
     userId: {
       type: DataTypes.INTEGER,
       onDelete: 'CASCADE'
