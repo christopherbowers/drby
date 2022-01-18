@@ -1,5 +1,8 @@
-# dryb
-*"Fall Into the Internet"*
+<p align="center">
+  <img src="https://raw.githubusercontent.com/christopherbowers/drby/main/client/src/assets/drby.svg" alt="drby" />
+  </br><i>“Fall Into the Internet”</i>
+</p>
+
 
 ## A Full Stack form web application by:
 
