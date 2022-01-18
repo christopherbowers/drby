@@ -1,6 +1,9 @@
 import e from 'cors';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { RegisterUser } from '../services/Auth';
+import styled from 'styled-components'
+import kirby from '../assets/kirby.gif'
 
 const initialState = {
     firstName: '',
@@ -11,40 +14,42 @@ const initialState = {
 }
 
 export default function Register(props){
-    const [formValues, setFormValues] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+  const navigate = useNavigate()
+
+  const [formValues, setFormValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  })
+
+  const handleChange = (e) => {
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await RegisterUser({
+      firstName: formValues.firstName,
+      lastName: formValues.lastName,
+      email: formValues.email,
+      password: formValues.password
     })
-
-    const handleChange = (event) => {
-        setFormValues({ ...formValues, [e.target.name]: e.target.value })
-    }
-
-    const handleSubmit = async (event) => {
-        e.preventDefault()
-        await RegisterUser({
-          firstName: formValues.firstName,
-          lastName: formValues.lastName,
-          email: formValues.email,
-          password: formValues.password
-        })
-        setFormValues(initialState)
-        props.history.push('/login')
-    }
+    setFormValues(initialState)
+    navigate('/')
+  }
 
     return (
-      <>
+      <Wrapper>
       <div className='login-page'>
         <div className='login-icon'>
-          <img src='http://pa1.narvii.com/6623/76cf305f541645dcaa5c3482ce4448ab1ae227ae_00.gif' />
+          <img src={kirby} alt="Kirby" />
         </div>
           <form className='register-form' onSubmit={handleSubmit}>
             <div className='input-box'>
               <h2 className='first-name'>First Name </h2>
-              <input 
+              <input
                 onChange={handleChange}
                 name='firstName'
                 type='text'
@@ -99,15 +104,23 @@ export default function Register(props){
             <button
               disabled={
                 !formValues.firstName && !formValues.lastName && !formValues.email || (
-                    !formValues.password && 
-                    formValues.confirmPassword === formValues.password
+                  !formValues.password &&
+                  formValues.confirmPassword === formValues.password
                 )
               }
             >
               Sign up
             </button>
           </form>
-        </div>    
-        </>
+        </div>
+        </Wrapper>
     )
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-align: center;
+`
