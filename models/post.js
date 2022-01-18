@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Post.init({
     title: DataTypes.STRING,
-    comment: DataTypes.STRING,
+    postbody: DataTypes.STRING,
     upvote: DataTypes.NUMBER,
     downvote: DataTypes.NUMBER,
     imgURL: DataTypes.STRING,

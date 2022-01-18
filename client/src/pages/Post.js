@@ -12,6 +12,7 @@ export default function Post() {
         <h2>{ topic }</h2>
       </div>
       <section>
+
       </section>
     </Wrapper>
   )
