@@ -6,7 +6,9 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Post from './pages/Post'
+import CreatePost from './pages/CreatePost'
 import { CheckSession } from './services/Auth'
+import axios from 'axios'
 
 
 export default function App() {
@@ -49,6 +51,7 @@ export default function App() {
       />*/}
       <Route path="/home" element={<Home />}/>
       <Route path="/:topic/posts/:id" element={<Post />}/>
+      <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
     </Routes>
 

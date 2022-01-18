@@ -38,6 +38,7 @@ const Navbar = () => {
         ))
       }
       <div className="profile-link">
+      <Link to="/createpost">create post</Link>
       <Link to="/users/:id">
         🤖
       </Link>

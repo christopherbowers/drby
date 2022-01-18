@@ -2,8 +2,8 @@ const { Topic } = require ('../models')
 
 const getAllTopics = async (req, res) => {
     try {
-        const res = await Topic.findAll()
-        res.send(res)
+        const topic = await Topic.findAll()
+        res.send(topic)
     } catch (error) {
         throw error;
     }
@@ -11,8 +11,8 @@ const getAllTopics = async (req, res) => {
 
 const getTopicById = async (req, res) => {
     try {
-        const res = await Topic.findByPk(req.params.topic_id)
-        res.send(res)
+        const topic = await Topic.findByPk(req.params.id)
+        res.send(topic)
     } catch (error) {
         throw error
     }
