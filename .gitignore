@@ -1,2 +1,6 @@
 .env
+<<<<<<< HEAD
 node_models
+=======
+node_modules
+>>>>>>> userSeed
