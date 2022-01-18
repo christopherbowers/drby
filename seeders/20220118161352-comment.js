@@ -10,7 +10,7 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
+     */
   },
 
   down: async (queryInterface, Sequelize) => {
