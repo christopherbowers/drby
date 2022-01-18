@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Post.hasMany(models.Comment, { foreignKey: 'postId'})
       Post.hasMany(models.Vote, { foreignKey: 'postId' })
-      Post.belongsTo(models.User, {foreignKey: 'postId'})
-      Post.belongsTo(models.Topic, { foreignKey: 'postId'})
+      Post.belongsTo(models.User, {foreignKey: 'userId'})
+      Post.belongsTo(models.Topic, { foreignKey: 'topicId'})
     }
   };
   Post.init({
@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     downvote: DataTypes.NUMBER,
     imgURL: DataTypes.STRING,
     userId: {
+      type: DataTypes.INTEGER,
+      onDelete: 'CASCADE'
+    },
+    topicId: {
       type: DataTypes.INTEGER,
       onDelete: 'CASCADE'
     }

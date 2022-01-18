@@ -10,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Topic.hasMany(models.Post, {foreignKey: 'postId'})
+      Topic.hasMany(models.Post, {foreignKey: 'topicId'})
     }
   };
   Topic.init({
     name: DataTypes.STRING,
-  }, {
+},
+  {
     sequelize,
     modelName: 'Topic',
     tableName: 'topics'

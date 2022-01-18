@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.addColumn('users','postId',{
-      type: Sequelize.STRING
+      type: Sequelize.INTEGER
     }
   )
   },
