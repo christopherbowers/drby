@@ -30,7 +30,7 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
   try {
-    let postId = parseInt(req.params.post_id)
+    let postId = parseInt(req.params.id)
     let updatedPost = await Post.update(req.body, {
       where: { id: postId },
       returning: true
@@ -43,7 +43,7 @@ const updatePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
   try {
-    let postId = parseInt(req.params.post_id)
+    let postId = parseInt(req.params.id)
     await Post.destroy({ where: { id: postId } })
     res.send({ message: `Deleted post with an id of ${postId}` })
   }
