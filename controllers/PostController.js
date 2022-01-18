@@ -20,13 +20,10 @@ const getPostById = async (req, res) => {
 
 const createPost = async (req, res) => {
     try {
-        let userId = parseInt(req.params.user_id)
-        let postBody = {
-            userId,
-            ...req.body
-        }
-        let post = await Post.create(postBody)
-        res.send(post)
+      const postBody = (req.body)
+      // res.send(postBody)
+      let post = await Post.create(postBody)
+      res.send(post)
     } catch (error) {
         throw error
     }
@@ -35,7 +32,7 @@ const createPost = async (req, res) => {
 const updatePost = async (req, res) => {
     try {
         let postId = parseInt(req.params.post_id)
-        let updatedPost = await Post.update(req.body, { 
+        let updatedPost = await Post.update(req.body, {
             where: { id: postId },
             returning: true
         })
