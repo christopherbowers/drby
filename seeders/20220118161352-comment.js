@@ -5,7 +5,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const comment = await Promise.all(
       [...Array(10)].map(async () => {
-        let user = await User.finOne({ order: sequelize.random(), raw: true });
+        let user = await User.findOne({ order: sequelize.random(), raw: true });
         let post = await Post.findOne({
           order: sequelize.random(),
           raw: true
