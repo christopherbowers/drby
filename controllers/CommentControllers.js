@@ -26,11 +26,11 @@ const updateComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   try {
-    let commentId = parseInt(req.params.comm);
+    let commentId = parseInt(req.params.comment_id);
     await Comment.destroy({
-      where: { where: commentId },
-      returning: true
+      where: { id: commentId }
     });
+    res.send({ message: `Deleted User with an id of ${commentId}` });
   } catch (error) {
     throw error;
   }
