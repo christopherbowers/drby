@@ -78,7 +78,7 @@ export default function App() {
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
       <Route path="/" element={<Home topics={topics} />}/>
-      <Route path="/:topic/posts/:id" element={<Post />}/>
+      <Route path="/:topic/:topicID/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
     </Routes>
