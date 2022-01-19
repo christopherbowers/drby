@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
+import { BASE_URL } from '../globals'
 
 export default function Topic() {
 
@@ -14,7 +15,7 @@ export default function Topic() {
   const [topicTitle, setTopicTitle] = useState()
 
   const getTopicPosts = () => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/api/topics/${topicId}`)
+    axios.get(`${BASE_URL}/topics/${topicId}`)
     .then( res => {
       setTopic(res.data)
       setTopicTitle(res.data[0].Topic.name)

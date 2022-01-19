@@ -32,14 +32,13 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get(`${BASE_URL}/api/topics/`)
+    axios.get(`${BASE_URL}/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
     })
   }
 
-  console.log(BASE_URL)
 
   useEffect(() => {
     document.title = 'drby'
@@ -88,7 +87,6 @@ export default function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
     </Routes>
-
   </>
   )
 }

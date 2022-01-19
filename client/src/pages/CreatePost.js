@@ -1,7 +1,8 @@
-import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { Navigate } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import axios from 'axios'
+import { BASE_URL } from '../globals'
 
 export default function CreatePost({user}){
   const { id } = useParams();
@@ -9,7 +10,7 @@ export default function CreatePost({user}){
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/topics/`)
+    axios.get(`${BASE_URL}/topics/`)
     .then(res=>{
       setTopics(res.data)
       setLoading(false)
@@ -26,7 +27,7 @@ export default function CreatePost({user}){
     const topicId = event.target.topic.value;
 
     const test = await axios.post(
-      `http://localhost:3001/api/posts`,
+      `${BASE_URL}/posts`,
       {
         title,
         postbody,
