@@ -21,7 +21,7 @@ module.exports = {
         };
       })
     );
-    await queryInterface.bulkInsert('comment', comment);
+    await queryInterface.bulkInsert('comments', comment);
     // await queryInterface.bulkInsert(
     //   'comments',
     //   [
@@ -59,7 +59,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('comment');
+    await queryInterface.bulkDelete('comments');
 
     //   return queryInterface.bulkDelete('comments');
     // }
