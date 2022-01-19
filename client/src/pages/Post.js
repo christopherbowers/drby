@@ -21,7 +21,7 @@ export default function Post() {
 
   const deletePost = (e) => {
     e.preventDefault()
-    axios.delete(`http://localhost:3001/api/posts/${ e.target.value }`)
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/api/posts/${ e.target.value }`)
     navigate('/')
   }
 

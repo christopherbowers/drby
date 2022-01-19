@@ -31,7 +31,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get(`http://localhost:3001/api/topics/`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
@@ -40,6 +40,7 @@ export default function App() {
 
 
   useEffect(() => {
+      console.log(process.env.REACT_APP_BASE_URL)
     document.title = 'drby'
     getTopics()
     const token = localStorage.getItem('token')

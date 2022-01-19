@@ -14,7 +14,7 @@ export default function Topic() {
   const [topicTitle, setTopicTitle] = useState()
 
   const getTopicPosts = () => {
-    axios.get(`http://localhost:3001/api/topics/${topicId}`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/api/topics/${topicId}`)
     .then( res => {
       setTopic(res.data)
       setTopicTitle(res.data[0].Topic.name)
