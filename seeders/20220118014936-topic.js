@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
-  await queryInterface.sync('topics', [
+  await queryInterface.bulkInsert('topics', [
     {
     name: 'Music',
     createdAt: new Date(),
