@@ -2,28 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/drby.svg'
 
-const Navbar = () => {
-
-  // Arry for testing without api set up
-  const topics = [
-    {
-      id: 1,
-      name: 'Topic 1',
-    },
-    {
-      id: 2,
-      name: 'Topic 2',
-    },
-    {
-      id: 3,
-      name: 'Topic 3',
-    },
-    {
-      id: 4,
-      name: 'Topic 4',
-    },
-  ]
-
+const Navbar = ({topics}) => {
 
   return (
     <Nav className="navbar">
@@ -37,8 +16,8 @@ const Navbar = () => {
           </Link>
         ))
       }
+      <Link to='/createpost'>Create a Post</Link>
       <div className="profile-link">
-      <Link to="/createpost">create post</Link>
       <Link to="/users/:id">
         🤖
       </Link>
