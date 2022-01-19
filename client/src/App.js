@@ -12,6 +12,7 @@ import Nav from './components/Nav'
 import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
+import { BASE_URL } from "./globals"
 
 export default function App() {
 
@@ -31,16 +32,16 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get(`${process.env.REACT_APP_BASE_URL}/api/topics/`)
+    axios.get(`${BASE_URL}/api/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
     })
   }
 
+  console.log(BASE_URL)
 
   useEffect(() => {
-      console.log(process.env.REACT_APP_BASE_URL)
     document.title = 'drby'
     getTopics()
     const token = localStorage.getItem('token')
