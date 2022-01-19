@@ -27,8 +27,9 @@ module.exports = {
         onDelete: 'CASCADE',
         references: {
           model: 'posts',
-          key: 'id'
-        },
+          key: 'id' 
+        }
+      },
         userId: {
           type: Sequelize.INTEGER,
           onDelete: 'CASCADE',
@@ -38,7 +39,7 @@ module.exports = {
           }
         }
       }
-    });
+    );
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('votes');

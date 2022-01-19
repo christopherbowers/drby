@@ -16,6 +16,7 @@ const Navbar = ({topics}) => {
           </Link>
         ))
       }
+      <Link to='/createpost'>Create a Post</Link>
       <div className="profile-link">
       <Link to="/users/:id">
         🤖

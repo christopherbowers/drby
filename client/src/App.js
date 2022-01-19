@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Post from './pages/Post'
+import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
 import { CheckSession } from './services/Auth'
 
@@ -78,6 +79,7 @@ export default function App() {
       />*/}
       <Route path="/" element={<Home topics={topics} />}/>
       <Route path="/:topic/posts/:id" element={<Post />}/>
+      <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
     </Routes>
 
