@@ -25,17 +25,16 @@ module.exports = {
         references: {
           model: 'posts',
           key: 'id'
-        },
+        }
+      },
       userId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'posts',
+          model: 'users',
           key: 'id'
-          }
+        }
       }
-
-    }
     });
   },
   down: async (queryInterface, Sequelize) => {
