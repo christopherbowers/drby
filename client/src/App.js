@@ -7,8 +7,8 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Post from './pages/Post'
-import { CheckSession } from './services/Auth'
 import Nav from './components/Nav'
+import { CheckSession } from './services/Auth'
 
 export default function App() {
 
@@ -35,6 +35,7 @@ export default function App() {
     })
   }
 
+
   useEffect(() => {
     document.title = 'drby'
     getTopics()
@@ -52,7 +53,6 @@ export default function App() {
      return <Nav topics={topics} />
     }
   }
-
 
 
   if (loading) {
