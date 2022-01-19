@@ -7,12 +7,11 @@ export default function EditPost(){
     const [post, setPost] = useState({});
     const { id, topicId } = useParams();
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         async function fetchData(){
             const res = await axios.get(`http://localhost:3001/api/posts/${id}`);
             const post = res.data;
-            console.log(post);
             setPost(post)
         }
         fetchData();
