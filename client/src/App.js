@@ -11,6 +11,7 @@ import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
 import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
+import EditPost from './components/EditPost'
 
 export default function App() {
 
@@ -30,7 +31,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get('/api/topics/')
+    axios.get(`/api/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
@@ -83,6 +84,7 @@ export default function App() {
       <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
+      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
     </Routes>
 
   </>
