@@ -30,7 +30,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get('/api/topics/')
+    axios.get(`/api/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
@@ -79,7 +79,7 @@ export default function App() {
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
       <Route path="/" element={<Home topics={topics} />}/>
-      <Route path="/:topic/:topicID/posts/:id" element={<Post />}/>
+      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
