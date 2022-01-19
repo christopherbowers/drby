@@ -1,42 +1,18 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Nav from '../components/Nav'
 
+export default function Home({topics}) {
 
-export default function Home() {
-
-  const [loading, setLoading] = useState(true)
-  const [topics, setTopics] = useState(null)
-
-  const getTopics = async () => {
-    axios.get('/api/topics/')
-    .then(res => {
-      setTopics(res.data)
-      setLoading(false)
-    })
-  }
-
-  useEffect(() => {
-    document.title = 'drby'
-    getTopics()
-  }, [])
-
-  if (loading) {
-    return ( <div>Loading...</div> )
-  }
   return (
     <>
-      <Nav />
       <Wrapper>
-        {
-          topics.map(({id, name}) => (
-            <div key={id} className="topics">
-              <Link to={(`/${name}`)}>{name}</Link>
-            </div>
-          ))
-        }
+      {
+        topics.map(({id, name}) => (
+          <div key={id} className="topics">
+            <Link to={(`/${name}`)}>{name}</Link>
+          </div>
+        ))
+      }
       </Wrapper>
     </>
   )
