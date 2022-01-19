@@ -9,6 +9,7 @@ import Register from './pages/Register'
 import Post from './pages/Post'
 import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
+import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
       <Route path="/" element={<Home topics={topics} />}/>
+      <Route path="/:topic" element={<Topic topics={topics} />} />
       <Route path="/:topic/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
