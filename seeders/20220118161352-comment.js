@@ -1,5 +1,6 @@
 'use strict';
 const { User, Post, sequelize } = require('../models');
+const { Op } = require('sequelize');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -8,6 +9,7 @@ module.exports = {
         let user = await User.findOne({ order: sequelize.random(), raw: true });
         let post = await Post.findOne({
           order: sequelize.random(),
+          where: { userId: { [Op.not]: user.id } },
           raw: true
         });
         return {
@@ -19,7 +21,7 @@ module.exports = {
         };
       })
     );
-    await queryInterface.bulk('user_comments', comment);
+    await queryInterface.bulkInsert('comment', comment);
     // await queryInterface.bulkInsert(
     //   'comments',
     //   [
@@ -57,7 +59,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('user_comment');
+    await queryInterface.bulkDelete('comment');
 
     //   return queryInterface.bulkDelete('comments');
     // }
