@@ -12,7 +12,7 @@ export default function Post() {
   const [loading, setLoading] = useState(true)
 
   const getPost = () => {
-    axios.get(`/api/posts/${id}`)
+    axios.get(`http://localhost:3001/api/posts/${id}`)
     .then( res => {
       setPost(res.data)
       setLoading(false)
@@ -21,7 +21,7 @@ export default function Post() {
 
   const deletePost = (e) => {
     e.preventDefault()
-    axios.delete(`/api/posts/${ e.target.value }`)
+    axios.delete(`http://localhost:3001/api/posts/${ e.target.value }`)
     navigate('/')
   }
 

@@ -31,7 +31,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get(`/api/topics/`)
+    axios.get(`http://localhost:3001/api/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
