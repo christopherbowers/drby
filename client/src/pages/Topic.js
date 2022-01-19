@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 
-export default function Topic(props) {
+export default function Topic() {
 
-  const { id } = useParams()
+  const { topicId } = useParams()
   const navigate = useNavigate()
+
+  console.log(topicId)
 
   const [topic, setTopic] = useState()
   const [loading, setLoading] = useState(true)
 
   const getTopicPosts = () => {
-    axios.get(`/api/topics/${id}`)
+    axios.get(`/api/topics/${topicId}`)
     .then( res => {
       setTopic(res.data)
       setLoading(false)
@@ -21,7 +23,7 @@ export default function Topic(props) {
 
   useEffect(() => {
     getTopicPosts()
-  }, [])
+  }, [topicId])
 
   console.log(topic)
 
@@ -33,7 +35,14 @@ export default function Topic(props) {
     <>
     <Wrapper>
       <div className="title">
-        <h2></h2>
+        <h2>Topic Tile</h2>
+        {
+          topic.map((topic) => (
+            <div key={topic.id}>
+            <Link to={(`/topics/${topic.topicId}/posts/${topic.id}`)}>{topic.title}</Link>
+            </div>
+          ))
+        }
       </div>
       </Wrapper>
     </>
