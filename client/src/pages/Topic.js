@@ -13,6 +13,8 @@ export default function Topic() {
   const [topic, setTopic] = useState()
   const [loading, setLoading] = useState(true)
 
+  const topicTitle = topic[0].Topic.name
+
   const getTopicPosts = () => {
     axios.get(`/api/topics/${topicId}`)
     .then( res => {
@@ -25,8 +27,6 @@ export default function Topic() {
     getTopicPosts()
   }, [topicId])
 
-  console.log(topic)
-
   if (loading) {
     return ( <div>Loading...</div> )
   }
@@ -35,7 +35,7 @@ export default function Topic() {
     <>
     <Wrapper>
       <div className="title">
-        <h2>Topic Tile</h2>
+        <h2>{topicTitle}</h2>
         {
           topic.map((topic) => (
             <div key={topic.id}>
