@@ -29,6 +29,7 @@ const getThreePosts = async (req, res) => {
     throw error;
   }
 };
+
 const getTopicPosts = async (req, res) => {
   try {
     let id = req.params.id;
