@@ -3,14 +3,14 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
 
-    await queryInterface.bulkInsert('topics', [
+  await queryInterface.sync('topics', [
     {
-    name: 'Topic 1',
+    name: 'Music',
     createdAt: new Date(),
     updatedAt: new Date()
     },
     {
-    name: 'Topic 2',
+    name: 'Games',
     createdAt: new Date(),
     updatedAt: new Date()
     },
@@ -20,12 +20,11 @@ module.exports = {
     updatedAt: new Date()
     },
     {
-    name: 'Topic 4',
+    name: 'Cycling',
     createdAt: new Date(),
     updatedAt: new Date()
     },
-  ], {});
-
+    ], {});
   },
 
   down: async (queryInterface, Sequelize) => {

@@ -7,7 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Post from './pages/Post'
 import { CheckSession } from './services/Auth'
-
+import Nav from './components/Nav'
 
 export default function App() {
 
@@ -36,7 +36,7 @@ export default function App() {
     <GlobalStyle />
     <Routes>
       <Route
-        path="/"
+        path="/login"
         element={
           <Login
           setUser={setUser}
@@ -44,10 +44,10 @@ export default function App() {
           /> }
       />
       {/*<Route
-        path="/home"
+        path="/"
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
-      <Route path="/home" element={<Home />}/>
+      <Route path="/" element={<Home />}/>
       <Route path="/:topic/posts/:id" element={<Post />}/>
       <Route path="/register" element={<Register />} />
     </Routes>
