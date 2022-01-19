@@ -12,6 +12,6 @@ export default function ProtectedRoute({
   }
 
   return (
-    <Navigate to="/" />
+    <Navigate to="/login" />
   )
 }
