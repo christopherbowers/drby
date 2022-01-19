@@ -1,25 +1,56 @@
-const { Topic } = require ('../models')
+const { Topic, Post, sequelize } = require('../models');
 
 const getAllTopics = async (req, res) => {
-    try {
-        const res = await Topic.findAll()
-        res.send(res)
-    } catch (error) {
-        throw error;
-    }
-    }
+  try {
+    const topics = await Topic.findAll();
+    res.send(topics);
+  } catch (error) {
+    throw error;
+  }
+};
 
-const getTopicById = async (req, res) => {
-    try {
-        const res = await Topic.findByPk(req.params.topic_id)
-        res.send(res)
-    } catch (error) {
-        throw error
-    }
-}
+const getThreePosts = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const posts = await Post.findAll({
+      where: { topicId: id },
+      limit: 3,
+      include: [
+        {
+          model: Topic,
+          required: true,
+          attributes: ['name']
+        }
+      ],
+      order: sequelize.random()
+    });
+    res.send(posts);
+  } catch (error) {
+    throw error;
+  }
+};
 
+const getTopicPosts = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const posts = await Post.findAll({
+      where: { topicId: id },
+      include: [
+        {
+          model: Topic,
+          required: true,
+          attributes: ['name']
+        }
+      ]
+    });
+    res.send(posts);
+  } catch (error) {
+    throw error;
+  }
+};
 
-    module.exports = {
-        getAllTopics,
-        getTopicById
-    }
+module.exports = {
+  getAllTopics,
+  getThreePosts,
+  getTopicPosts
+};
