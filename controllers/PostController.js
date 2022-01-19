@@ -22,7 +22,15 @@ const getPostComments = async (req, res) =>  {
     try {
       let id = req.params.id
       const post = await Comment.findAll({
-          where: { postId: id }
+          where: { postId: id },
+          attributes: ['body'],
+          include: [
+            {
+              model: Post,
+              required: true,
+              attributes: ['name', 'postbody']
+            }
+          ]
       })
       res.send(post)
     } catch (error) {
