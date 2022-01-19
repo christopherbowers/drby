@@ -16,7 +16,7 @@ export default function Topic() {
   const topicTitle = topic[0].Topic.name
 
   const getTopicPosts = () => {
-    axios.get(`/api/topics/${topicId}`)
+    axios.get(`http://localhost:3001/api/topics/${topicId}`)
     .then( res => {
       setTopic(res.data)
       setLoading(false)
