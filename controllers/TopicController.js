@@ -35,7 +35,6 @@ const getTopicPosts = async (req, res) => {
     let id = req.params.id;
     const posts = await Post.findAll({
       where: { topicId: id },
-      attributes: ['title', 'postbody'],
       include: [
         {
           model: Topic,
