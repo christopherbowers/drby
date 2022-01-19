@@ -9,7 +9,7 @@ export default function Home({topics}) {
       {
         topics.map(({id, name}) => (
           <div key={id} className="topics">
-            <Link to={(`/topic/${id}`)}>{name}</Link>
+            <Link to={(`/topics/${id}`)}>{name}</Link>
           </div>
         ))
       }
