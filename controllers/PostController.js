@@ -1,4 +1,4 @@
-const { Post, Vote } = require('../models');
+const { Post, Vote, Comment } = require('../models');
 const { Op } = require('sequelize');
 
 const getAllPosts = async (req, res) => {
@@ -10,7 +10,7 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-const getPostComments = async (req, res) => {
+const getPostById = async (req, res) => {
   try {
     let id = req.params.id;
     const comments = await Post.findByPk(req.params.id, {
@@ -20,15 +20,19 @@ const getPostComments = async (req, res) => {
           model: Comment,
           required: true,
           attributes: ['body']
+        },
+        {
+          model: Vote,
+          required: true,
+          attributes: ['upVoteCounter', 'downVoteCounter']
         }
       ]
-    })
+    });
     res.send(comments);
   } catch (error) {
-    throw error
+    throw error;
   }
 };
-
 
 const createPost = async (req, res) => {
   try {
@@ -63,22 +67,22 @@ const deletePost = async (req, res) => {
   }
 };
 
-const getPostWithVotes = async (req, req2, res) => {
+const getPostWithVotes = async (req, res) => {
   try {
     let thePostId = req.params.id;
-    let theUserId = req2.params.id;
-    const getPostWithVotes = await Vote.findAll({
+    // let theUserId = req2.params.id;
+    const postWithVotes = await Vote.findAll({
       where: {
-        [Op.and]: [{ postId: thePostId }, { userId: theUserId }]
+        postId: thePostId
       },
       include: [
         {
-          model: Vote,
-          required: true,
-          attributes: ['name']
+          model: Post,
+          required: true
         }
       ]
     });
+    res.send(postWithVotes);
   } catch (error) {
     throw error;
   }
@@ -89,5 +93,6 @@ module.exports = {
   getPostById,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
+  getPostWithVotes
 };
