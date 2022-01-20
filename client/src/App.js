@@ -13,6 +13,7 @@ import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
+import Comment from './components/Comment'
 
 
 export default function App() {

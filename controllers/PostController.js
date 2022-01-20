@@ -1,9 +1,24 @@
-const { Post, Vote, Comment } = require('../models');
+const { Post, Vote, Comment, User } = require('../models');
 const { Op } = require('sequelize');
 
 const getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: Comment,
+          attributes: ['body'],
+        },
+        {
+          model: User,
+          attributes: ['firstName']
+        },
+        {
+          model: Vote,
+          attributes: ['upVoteCounter', 'downVoteCounter']
+        }
+      ]
+    });
     res.send(posts);
   } catch (error) {
     throw error;
@@ -18,7 +33,11 @@ const getPostById = async (req, res) => {
       include: [
         {
           model: Comment,
-          attributes: ['body']
+          attributes: ['body'],
+        },
+        {
+          model: User,
+          attributes: ['firstName']
         },
         {
           model: Vote,

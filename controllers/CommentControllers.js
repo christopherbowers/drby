@@ -1,4 +1,4 @@
-const { Comment, User } = require('../models');
+const { Comment, User, postId } = require('../models');
 
 const getComments = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const getComments = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['firstName', 'lastName']
+          attributes: ['firstName']
         }
       ]
     });
@@ -19,13 +19,13 @@ const getComments = async (req, res) => {
 const getCommentById = async (req, res) => {
   try {
     let id = req.params.id;
-    const commentWithName = await Comment.findByPk(req.params.id, {
+    const commentWithName = await Comment.findAll({
       where: { postId: id },
       include: [
         {
           model: User,
-          attributes: ['firstName', 'lastName']
-        }
+          attributes: ['firstName']
+        },
       ]
     });
     res.send(commentWithName);
