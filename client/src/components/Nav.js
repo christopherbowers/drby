@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/drby.svg'
 
-const Navbar = ({topics}) => {
+const Navbar = ({topics, user}) => {
 
   return (
     <Nav className="navbar">
@@ -18,8 +18,8 @@ const Navbar = ({topics}) => {
       }
       <Link to='/createpost'>Create a Post</Link>
       <div className="profile-link">
-      <Link to="/users/:id">
-        🤖
+      <Link to="/login">
+        {user === "" ? '💔' : '❤️'}
       </Link>
       </div>
     </Nav>
