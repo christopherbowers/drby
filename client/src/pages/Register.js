@@ -37,7 +37,7 @@ export default function Register(props){
       password: formValues.password
     })
     setFormValues(initialState)
-    navigate('/')
+    navigate('/login')
   }
 
     return (

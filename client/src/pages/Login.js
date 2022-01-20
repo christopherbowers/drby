@@ -23,7 +23,7 @@ export default function Login(props) {
     // set user, toggle authenticated true
     props.toggleAuthenticated(true)
     // redirect to home page
-    navigate('/home')
+    navigate('/')
   }
 
   return (
