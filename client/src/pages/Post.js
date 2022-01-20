@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
+import Comment from '../components/Comment'
 
 
 export default function Post() {
@@ -49,6 +50,9 @@ export default function Post() {
       </section>
       <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/edit`)}>Edit</button>
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
+      <div className="comment">
+      <Comment />
+      </div>
     </Wrapper>
     </>
   )
