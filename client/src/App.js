@@ -50,16 +50,15 @@ export default function App() {
     console.log("token: " + token)
     // Check if token exists before requesting to validate the token
     if (token) {
-
       checkToken()
     }
   }, [])
 
   const showNav = () => {
-    if (location.pathname === '/login' || location.pathname === '/register' ) {
+    if (!authenticated) {
       return null
     } else {
-     return <Nav topics={topics} user={user}/>
+     return <Nav topics={topics} authenticated={authenticated}/>
     }
   }
 
@@ -73,24 +72,29 @@ export default function App() {
     <GlobalStyle />
     { showNav() }
     <Routes>
+    {authenticated ? (
+      <>
+      <Route path="/" element={<Home topics={topics} />} />
+      <Route path="/topics/:topicId" element={<Topic />} />
+      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
+      <Route path="/createpost" element={<CreatePost user={user}/>} />
+      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
+      </>
+      ) : (
+      <>
       <Route
-        path="/login"
+        path="/"
         element={
           <Login
           setUser={setUser}
           toggleAuthenticated={toggleAuthenticated}
           /> }
       />
-      {/*<Route
-        path="/"
-        element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
-      />*/}
-      <Route path="/" element={<Home topics={topics} />}/>
-      <Route path="/topics/:topicId" element={<Topic />} />
-      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
-      <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
-      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
+      </>
+      )}
+
+
     </Routes>
 
   </>
