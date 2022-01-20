@@ -6,18 +6,22 @@ import styled from 'styled-components';
 
 export default function Comment() {
 
-    const { id, postId } = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const [comments, setComments] = useState([]);
+    const [users, setUsers] = useState({});
+    // const []
     const [loading, setLoading] = useState(true);
 
+    console.log(id)
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get(`${BASE_URL}/comments/`);
-            const comments = res.data;
-            console.log(comments);
-            setComments(comments);
+            const res = await axios.get(`${BASE_URL}/comments/${id}`)
+            console.log(res.data);
+            console.log(res.data[0].User.firstName);
+            setUsers(res.data.User);
+            setComments(res.data);
             setLoading(false);
         }
         fetchData()
@@ -32,8 +36,9 @@ export default function Comment() {
         <Wrapper>
             {comments.map((comment) => (
             <div key={comment.id}>
-                <h1>{comment.User.firstName}</h1>
-                <h2>{comment.body}</h2>
+                <h2>{comment.User.firstName}</h2>
+                <h3>{comment.body}</h3>
+                <h3>{comment.createdAt}</h3>
             </div>
             ))}
         </Wrapper>

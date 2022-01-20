@@ -45,6 +45,7 @@ export default function Post() {
       </div>
       <section>
         <h3>{post.title}</h3>
+        <p>{post.createdAt}</p>
         <p>{post.postbody}</p>
         <p>{post.imgURL}</p>
       </section>
