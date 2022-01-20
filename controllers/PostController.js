@@ -12,13 +12,13 @@ const getAllPosts = async (req, res) => {
 const getPostComments = async (req, res) => {
   try {
     let id = req.params.id;
-    const comments = await Comment.findAll({
+    const comments = await Post.findByPk(req.params.id, {
       where: { postId: id },
       include: [
         {
-          model: Post,
+          model: Comment,
           required: true,
-          attributes: ['title', 'postbody']
+          attributes: ['body']
         }
       ]
     })
