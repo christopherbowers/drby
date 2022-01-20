@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 
 
 export default function CreatePost({user}){
-    const { id } = useParams();
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+
     const [topics, setTopics] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
       axios.get(`${BASE_URL}/topics/`)
       .then(res=>{
-        console.log(res.data)
         setTopics(res.data)
         setLoading(false)
       })
@@ -37,6 +39,8 @@ export default function CreatePost({user}){
           userId
         }
       )
+
+      navigate(`/topics/${topicId}`)
     };
 
 
