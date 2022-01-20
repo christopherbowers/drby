@@ -10,6 +10,7 @@ import Post from './pages/Post'
 import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
 import Topic from './pages/Topic'
+import User from './pages/User'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
@@ -81,6 +82,7 @@ export default function App() {
       <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
+      <Route path="/user" element={<User />} />
       </>
       ) : (
       <>
