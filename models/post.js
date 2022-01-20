@@ -26,7 +26,14 @@ module.exports = (sequelize, DataTypes) => {
           min: 0
         }
       },
-      downvote: DataTypes.NUMBER,
+      downvote: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0
+        }
+      },
       imgURL: DataTypes.STRING,
       userId: {
         type: DataTypes.INTEGER,
