@@ -10,7 +10,7 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-const getPostPostById = async (req, res) => {
+const getPostById = async (req, res) => {
   try {
     let id = req.params.id;
     const comments = await Post.findByPk(req.params.id, {
@@ -90,10 +90,9 @@ const getPostWithVotes = async (req, res) => {
 
 module.exports = {
   getAllPosts,
-  // getPostById,
+  getPostById,
   createPost,
   updatePost,
   deletePost,
-  getPostWithVotes,
-  getPostComments
+  getPostWithVotes
 };
