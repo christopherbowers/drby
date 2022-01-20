@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
@@ -10,30 +8,47 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Post.hasMany(models.Comment, { foreignKey: 'postId'})
-      Post.hasMany(models.Vote, { foreignKey: 'postId' })
-      Post.belongsTo(models.User, {foreignKey: 'userId'})
-      Post.belongsTo(models.Topic, { foreignKey: 'topicId'})
+      Post.hasMany(models.Comment, { foreignKey: 'postId' });
+      Post.hasMany(models.Vote, { foreignKey: 'postId' });
+      Post.belongsTo(models.User, { foreignKey: 'userId' });
+      Post.belongsTo(models.Topic, { foreignKey: 'topicId' });
     }
-  };
-  Post.init({
-    title: DataTypes.STRING,
-    postbody: DataTypes.STRING,
-    upvote: DataTypes.NUMBER,
-    downvote: DataTypes.NUMBER,
-    imgURL: DataTypes.STRING,
-    userId: {
-      type: DataTypes.INTEGER,
-      onDelete: 'CASCADE'
+  }
+  Post.init(
+    {
+      title: DataTypes.STRING,
+      postbody: DataTypes.STRING,
+      upvote: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0
+        }
+      },
+      downvote: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+        validate: {
+          min: 0
+        }
+      },
+      imgURL: DataTypes.STRING,
+      userId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE'
+      },
+      topicId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE'
+      }
     },
-    topicId: {
-      type: DataTypes.INTEGER,
-      onDelete: 'CASCADE'
+    {
+      sequelize,
+      modelName: 'Post',
+      tableName: 'posts'
     }
-  }, {
-    sequelize,
-    modelName: 'Post',
-    tableName: 'posts'
-  });
+  );
   return Post;
 };

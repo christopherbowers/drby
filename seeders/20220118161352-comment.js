@@ -16,6 +16,7 @@ module.exports = {
           body: 'soemthing random',
           userId: user.id,
           postId: post.id,
+          upVote: 0,
           createdAt: new Date(),
           updatedAt: new Date()
         };
