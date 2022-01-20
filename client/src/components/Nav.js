@@ -2,7 +2,18 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/drby.svg'
 
-const Navbar = ({topics, user}) => {
+const Navbar = ({
+  topics,
+  authenticated,
+  toggleAuthenticated,
+  setUser
+}) => {
+
+  const logout = (e) => {
+    toggleAuthenticated(false)
+    setUser(null)
+    localStorage.clear()
+  }
 
   return (
     <Nav className="navbar">
@@ -18,9 +29,8 @@ const Navbar = ({topics, user}) => {
       }
       <Link to='/createpost'>Create a Post</Link>
       <div className="profile-link">
-      <Link to="/login">
-        {user === "" ? '💔' : '❤️'}
-      </Link>
+        <Link to="/user">👾</Link>
+        <Link to="/" onClick={logout}>Logout</Link>
       </div>
     </Nav>
   )
@@ -32,6 +42,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   align-content: space-between;
+  padding: 5px 10px;
 
   a {
     text-decoration: none;
@@ -54,10 +65,8 @@ const Nav = styled.nav`
     background-color: hsl(339, 100%, 79%);
     color: white;
     border: 3px solid transparent;
-    border-radius: 50%;
+    border-radius: 6px;
     display: inline-block;
-    height: 40px;
-    width: 40px;
   }
 
   .profile-link a:hover {

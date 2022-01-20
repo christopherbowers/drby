@@ -30,10 +30,8 @@ export default function App() {
     const user = await CheckSession()
     setUser(user)
     toggleAuthenticated(true)
-    console.log('Check Token')
   }
 
-  console.log(user, authenticated)
 
   const getTopics = async () => {
     axios.get(`${BASE_URL}/topics/`)
@@ -48,7 +46,6 @@ export default function App() {
     document.title = 'drby'
     getTopics()
     const token = localStorage.getItem('token')
-    console.log("token: " + token)
     // Check if token exists before requesting to validate the token
     if (token) {
       checkToken()
@@ -59,7 +56,12 @@ export default function App() {
     if (!authenticated) {
       return null
     } else {
-     return <Nav topics={topics} authenticated={authenticated}/>
+     return <Nav
+              topics={topics}
+              authenticated={authenticated}
+              toggleAuthenticated={toggleAuthenticated}
+              setUser={setUser}
+            />
     }
   }
 
