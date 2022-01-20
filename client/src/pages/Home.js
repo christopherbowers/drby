@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { BASE_URL } from '../globals'
+
 
 export default function Home({topics}) {
 
@@ -9,7 +11,7 @@ export default function Home({topics}) {
       {
         topics.map(({id, name}) => (
           <div key={id} className="topics">
-            <Link to={(`/topics/${id}`)}>{name}</Link>
+            <Link to={(`${BASE_URL}/topics/${id}`)}>{name}</Link>
           </div>
         ))
       }
