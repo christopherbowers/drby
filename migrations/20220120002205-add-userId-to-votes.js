@@ -4,8 +4,8 @@ const { sequelize } = require('../models');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.addCollumn('votes', 'userId', {
-      type: sequelize.INTEGER
+    return queryInterface.addColumn('votes', 'userId', {
+      type: Sequelize.INTEGER
     });
   },
 

@@ -1,5 +1,5 @@
-const { Post } = require('../models');
-
+const { Post, Vote } = require('../models');
+const { Op } = require('sequelize');
 const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.findAll();
@@ -46,6 +46,27 @@ const deletePost = async (req, res) => {
     let postId = parseInt(req.params.id);
     await Post.destroy({ where: { id: postId } });
     res.send({ message: `Deleted post with an id of ${postId}` });
+  } catch (error) {
+    throw error;
+  }
+};
+
+const getPostWithVotes = async (req, req2, res) => {
+  try {
+    let thePostId = req.params.id;
+    let theUserId = req2.params.id;
+    const getPostWithVotes = await Vote.findAll({
+      where: {
+        [Op.and]: [{ postId: thePostId }, { userId: theUserId }]
+      },
+      include: [
+        {
+          model: Vote,
+          required: true,
+          attributes: ['name']
+        }
+      ]
+    });
   } catch (error) {
     throw error;
   }
