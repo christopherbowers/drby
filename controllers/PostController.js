@@ -1,61 +1,60 @@
-const { Post } = require ('../models')
+const { Post } = require('../models');
 
 const getAllPosts = async (req, res) => {
-    try {
-      const posts = await Post.findAll()
-      res.send(posts)
-    } catch (error) {
-        throw error;
-    }
+  try {
+    const posts = await Post.findAll();
+    res.send(posts);
+  } catch (error) {
+    throw error;
   }
+};
 
 const getPostById = async (req, res) => {
   try {
-    const post = await Post.findByPk(req.params.id)
-    res.send(post)
+    const post = await Post.findByPk(req.params.id);
+    res.send(post);
   } catch (error) {
-      throw error
+    throw error;
   }
-}
+};
 
 const createPost = async (req, res) => {
   try {
-    const postBody = (req.body)
-    let post = await Post.create(postBody)
-    res.send(post)
+    let postBody = req.body;
+    let post = await Post.create(postBody);
+    res.send(post);
   } catch (error) {
-      throw error
+    throw error;
   }
-}
+};
 
 const updatePost = async (req, res) => {
   try {
-    let postId = parseInt(req.params.id)
+    let postId = parseInt(req.params.id);
     let updatedPost = await Post.update(req.body, {
       where: { id: postId },
       returning: true
-    })
-    res.send(updatedPost)
+    });
+    res.send(updatedPost);
   } catch (error) {
-      throw error
+    throw error;
   }
-}
+};
 
 const deletePost = async (req, res) => {
   try {
-    let postId = parseInt(req.params.id)
-    await Post.destroy({ where: { id: postId } })
-    res.send({ message: `Deleted post with an id of ${postId}` })
+    let postId = parseInt(req.params.id);
+    await Post.destroy({ where: { id: postId } });
+    res.send({ message: `Deleted post with an id of ${postId}` });
+  } catch (error) {
+    throw error;
   }
-  catch (error) {
-  throw error
-  }
-}
+};
 
 module.exports = {
-    getAllPosts,
-    getPostById,
-    createPost,
-    updatePost,
-    deletePost
-}
+  getAllPosts,
+  getPostById,
+  createPost,
+  updatePost,
+  deletePost
+};
