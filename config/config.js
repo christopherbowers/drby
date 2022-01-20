@@ -1,12 +1,12 @@
-require('dotenv').config()
+require('dotenv').config();
 module.exports = {
   development: {
     database: 'drby_development',
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   test: {
     database: 'drby_test',
-    dialect: 'postgres',
+    dialect: 'postgres'
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -18,4 +18,4 @@ module.exports = {
       }
     }
   }
-}
+};

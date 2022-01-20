@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { BASE_URL } from '../globals'
+
 
 export default function Home({topics}) {
 
