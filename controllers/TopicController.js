@@ -34,6 +34,7 @@ const getTopicPosts = async (req, res) => {
   try {
     let id = req.params.id;
     const posts = await Post.findAll({
+      order: [['createdAt', 'DESC']],
       where: { topicId: id },
       include: [
         {
