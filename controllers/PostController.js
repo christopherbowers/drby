@@ -51,22 +51,22 @@ const deletePost = async (req, res) => {
   }
 };
 
-const getPostWithVotes = async (req, req2, res) => {
+const getPostWithVotes = async (req, res) => {
   try {
     let thePostId = req.params.id;
-    let theUserId = req2.params.id;
-    const getPostWithVotes = await Vote.findAll({
+    // let theUserId = req2.params.id;
+    const postWithVotes = await Vote.findAll({
       where: {
-        [Op.and]: [{ postId: thePostId }, { userId: theUserId }]
+        postId: thePostId
       },
       include: [
         {
-          model: Vote,
-          required: true,
-          attributes: ['name']
+          model: Post,
+          required: true
         }
       ]
     });
+    res.send(postWithVotes);
   } catch (error) {
     throw error;
   }
@@ -77,5 +77,6 @@ module.exports = {
   getPostById,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
+  getPostWithVotes
 };
