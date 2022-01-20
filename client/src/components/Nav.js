@@ -29,10 +29,8 @@ const Navbar = ({
       }
       <Link to='/createpost'>Create a Post</Link>
       <div className="profile-link">
-      <Link to="/" onClick={logout}>Logout</Link>
-{/*       <Link to="/user">
-        {user === "" ? '💔' : '❤️'}
-      </Link> */}
+        <Link to="/user">👾</Link>
+        <Link to="/" onClick={logout}>Logout</Link>
       </div>
     </Nav>
   )
@@ -44,6 +42,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   align-content: space-between;
+  padding: 5px 10px;
 
   a {
     text-decoration: none;
