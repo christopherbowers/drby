@@ -1,4 +1,4 @@
-const { Post, Vote } = require('../models');
+const { Post, Vote, Comment } = require('../models');
 const { Op } = require('sequelize');
 
 const getAllPosts = async (req, res) => {
@@ -10,7 +10,7 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-const getPostComments = async (req, res) => {
+const getPostPostById = async (req, res) => {
   try {
     let id = req.params.id;
     const comments = await Post.findByPk(req.params.id, {
@@ -20,6 +20,11 @@ const getPostComments = async (req, res) => {
           model: Comment,
           required: true,
           attributes: ['body']
+        },
+        {
+          model: Vote,
+          required: true,
+          attributes: ['upVoteCounter', 'downVoteCounter']
         }
       ]
     });
@@ -85,9 +90,10 @@ const getPostWithVotes = async (req, res) => {
 
 module.exports = {
   getAllPosts,
-  getPostById,
+  // getPostById,
   createPost,
   updatePost,
   deletePost,
-  getPostWithVotes
+  getPostWithVotes,
+  getPostComments
 };
