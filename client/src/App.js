@@ -31,6 +31,7 @@ export default function App() {
     toggleAuthenticated(true)
   }
 
+  console.log(user, authenticated)
 
   const getTopics = async () => {
     axios.get(`${BASE_URL}/topics/`)
@@ -45,6 +46,7 @@ export default function App() {
     document.title = 'drby'
     getTopics()
     const token = localStorage.getItem('token')
+    // console.log("token: " + token)
     // Check if token exists before requesting to validate the token
     if (token) {
       checkToken()
@@ -55,7 +57,7 @@ export default function App() {
     if (location.pathname === '/login' || location.pathname === '/register' ) {
       return null
     } else {
-     return <Nav topics={topics} />
+     return <Nav topics={topics} user={user}/>
     }
   }
 
