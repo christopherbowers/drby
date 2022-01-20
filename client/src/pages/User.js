@@ -1,7 +1,7 @@
-export default function User() {
+export default function User({authedUser}) {
   return (
     <>
-      <h1>Hello User</h1>
+      <h1>👋 {authedUser.firstName}</h1>
     </>
   )
 }

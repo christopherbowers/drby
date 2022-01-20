@@ -6,7 +6,8 @@ const Navbar = ({
   topics,
   authenticated,
   toggleAuthenticated,
-  setUser
+  setUser,
+  authedUser,
 }) => {
 
   const logout = (e) => {
@@ -14,6 +15,8 @@ const Navbar = ({
     setUser(null)
     localStorage.clear()
   }
+
+{/* console.log() */}
 
   return (
     <Nav className="navbar">
@@ -28,9 +31,9 @@ const Navbar = ({
         ))
       }
       <Link to='/createpost'>Create a Post</Link>
-      <div className="profile-link">
-        <Link to="/user">👾</Link>
-        <Link to="/" onClick={logout}>Logout</Link>
+      <div className="flex-right">
+        <Link to="/user" className="user-link">Hello {authedUser.firstName}</Link>
+        <Link to="/" className="profile-link" onClick={logout}>Logout</Link>
       </div>
     </Nav>
   )
@@ -57,11 +60,11 @@ const Nav = styled.nav`
     border: solid 3px hsla(252, 51%, 24%, 1);
   }
 
-  .profile-link {
+  .flex-right {
     margin-left: auto;
   }
 
-  .profile-link a {
+  .profile-link {
     background-color: hsl(339, 100%, 79%);
     color: white;
     border: 3px solid transparent;
@@ -70,6 +73,18 @@ const Nav = styled.nav`
   }
 
   .profile-link a:hover {
+    border: solid 3px hsla(252, 51%, 24%, 1);
+  }
+
+  .user-link {
+    background-color: hsla(252, 51%, 24%, .5);
+    color: white;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .user-link a:hover {
     border: solid 3px hsla(252, 51%, 24%, 1);
   }
 

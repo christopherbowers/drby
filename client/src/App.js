@@ -23,13 +23,14 @@ export default function App() {
 
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const [authedUser, setAuthedUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [topics, setTopics] = useState(null)
 
   const checkToken = async () => {
     //If a token exists, sends token to localstorage to persist logged in user
     const user = await CheckSession()
-    setUser(user)
+    // setUser(user)
     toggleAuthenticated(true)
   }
 
@@ -42,27 +43,40 @@ export default function App() {
     })
   }
 
+  const getAuthedUser = async () => {
+    const id = localStorage.getItem('id')
+    axios.get(`${BASE_URL}/users/${id}`)
+    .then( res => {
+      setAuthedUser(res.data)
+    })
+  }
+
 
   useEffect(() => {
     document.title = 'drby'
-    getTopics()
     const token = localStorage.getItem('token')
     // Check if token exists before requesting to validate the token
     if (token) {
+      getTopics()
       checkToken()
+      getAuthedUser()
     }
   }, [])
+
 
   const showNav = () => {
     if (!authenticated) {
       return null
     } else {
-     return <Nav
-              topics={topics}
-              authenticated={authenticated}
-              toggleAuthenticated={toggleAuthenticated}
-              setUser={setUser}
-            />
+     return (
+       <Nav
+        topics={topics}
+        authenticated={authenticated}
+        toggleAuthenticated={toggleAuthenticated}
+        setUser={setUser}
+        authedUser={authedUser}
+      />
+     )
     }
   }
 
@@ -83,7 +97,7 @@ export default function App() {
       <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
-      <Route path="/user" element={<User />} />
+      <Route path="/user" element={<User authedUser={authedUser} />} />
       </>
       ) : (
       <>
