@@ -7,8 +7,13 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Post from './pages/Post'
+import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
+import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
+import EditPost from './components/EditPost'
+import { BASE_URL } from './globals'
+
 
 export default function App() {
 
@@ -28,7 +33,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get('/api/topics/')
+    axios.get(`${BASE_URL}/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)
@@ -77,8 +82,11 @@ export default function App() {
         element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
       />*/}
       <Route path="/" element={<Home topics={topics} />}/>
-      <Route path="/:topic/posts/:id" element={<Post />}/>
+      <Route path="/topics/:topicId" element={<Topic />} />
+      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
+      <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
+      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
     </Routes>
 
   </>

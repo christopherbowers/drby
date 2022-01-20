@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
+import { BASE_URL } from '../globals'
+
 
 export default function Post() {
 
-  const { topic, id } = useParams()
+  const { topic, id, topicId} = useParams()
   const navigate = useNavigate()
 
   const [post, setPost] = useState()
   const [loading, setLoading] = useState(true)
 
   const getPost = () => {
-    axios.get(`/api/posts/${id}`)
+    axios.get(`${BASE_URL}/posts/${id}`)
     .then( res => {
       setPost(res.data)
       setLoading(false)
@@ -21,8 +23,8 @@ export default function Post() {
 
   const deletePost = (e) => {
     e.preventDefault()
-    axios.delete(`/api/posts/${ e.target.value }`)
-    navigate('/')
+    axios.delete(`${BASE_URL}/posts/${ e.target.value }`)
+    navigate(`/topics/${topicId}`)
   }
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function Post() {
         <h3>{post.title}</h3>
         <p>{post.postbody}</p>
       </section>
-      <button onClick={() => navigate(`/posts/edit/${ post.id }`)}>Edit</button>
+      <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/edit`)}>Edit</button>
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
     </Wrapper>
     </>
