@@ -1,4 +1,4 @@
-const { Post } = require ('../models')
+const { Post, Comment } = require ('../models')
 
 const getAllPosts = async (req, res) => {
     try {
@@ -17,6 +17,26 @@ const getPostById = async (req, res) => {
       throw error
   }
 }
+
+const getPostComments = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const comments = await Comment.findAll({
+      where: { postId: id },
+      // include: [
+      //   {
+      //     model: Post,
+      //     required: true,
+      //     attributes: ['title', 'postbody']
+      //   }
+      // ]
+    })
+    res.send(comments);
+  } catch (error) {
+    throw error
+  }
+}
+
 
 const createPost = async (req, res) => {
   try {
@@ -55,6 +75,7 @@ const deletePost = async (req, res) => {
 module.exports = {
     getAllPosts,
     getPostById,
+    getPostComments,
     createPost,
     updatePost,
     deletePost
