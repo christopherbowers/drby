@@ -1,9 +1,9 @@
-import Axios from 'axios';
+import Axios from 'axios'
 import { BASE_URL } from '../globals'
 
 const Client = Axios.create({ baseURL: BASE_URL })
-// intercept every request axios makes
 
+// Intercepts every request axios makes
 Client.interceptors.request.use(
   (config) => {
     // Reads the token in localstorage
