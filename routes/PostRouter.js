@@ -3,7 +3,7 @@ const controller = require('../controllers/PostController')
 const middleware = require('../middleware')
 
 Router.get('/', controller.getAllPosts)
-Router.get('/:id', controller.getPostById)
+Router.get('/:id', controller.getPostComments)
 Router.post('/', controller.createPost)
 Router.put('/:id', controller.updatePost)
 Router.delete('/:id', controller.deletePost)
