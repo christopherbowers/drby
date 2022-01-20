@@ -37,14 +37,14 @@ export default function Register(props){
       password: formValues.password
     })
     setFormValues(initialState)
-    navigate('/')
+    navigate('/login')
   }
 
     return (
       <Wrapper>
       <div className='login-page'>
         <div className='login-icon'>
-          <img src={kirby} alt="Kirby" />
+          <img src={kirby} alt="Kirby" style={{height: '310px'}}/>
         </div>
           <form className='register-form' onSubmit={handleSubmit}>
             <div className='input-box'>

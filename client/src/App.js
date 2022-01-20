@@ -12,6 +12,8 @@ import Nav from './components/Nav'
 import Topic from './pages/Topic'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
+import { BASE_URL } from './globals'
+
 
 export default function App() {
 
@@ -31,7 +33,7 @@ export default function App() {
 
 
   const getTopics = async () => {
-    axios.get(`http://localhost:3001/api/topics/`)
+    axios.get(`${BASE_URL}/topics/`)
     .then(res => {
       setTopics(res.data)
       setLoading(false)

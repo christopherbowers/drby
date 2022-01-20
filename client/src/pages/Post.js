@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import axios from 'axios'
+import { BASE_URL } from '../globals'
+
 
 export default function Post() {
 
@@ -12,7 +14,7 @@ export default function Post() {
   const [loading, setLoading] = useState(true)
 
   const getPost = () => {
-    axios.get(`http://localhost:3001/api/posts/${id}`)
+    axios.get(`${BASE_URL}/posts/${id}`)
     .then( res => {
       setPost(res.data)
       setLoading(false)
@@ -21,8 +23,8 @@ export default function Post() {
 
   const deletePost = (e) => {
     e.preventDefault()
-    axios.delete(`http://localhost:3001/api/posts/${ e.target.value }`)
-    navigate('/')
+    axios.delete(`${BASE_URL}/posts/${ e.target.value }`)
+    navigate(`/topics/${topicId}`)
   }
 
   useEffect(() => {
