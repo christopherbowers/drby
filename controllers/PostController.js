@@ -18,12 +18,10 @@ const getPostById = async (req, res) => {
       include: [
         {
           model: Comment,
-          required: true,
           attributes: ['body']
         },
         {
           model: Vote,
-          required: true,
           attributes: ['upVoteCounter', 'downVoteCounter']
         }
       ]
