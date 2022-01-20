@@ -5,14 +5,14 @@ import axios from 'axios'
 
 export default function Post() {
 
-  const { topic, id } = useParams()
+  const { topic, id, topicId} = useParams()
   const navigate = useNavigate()
 
   const [post, setPost] = useState()
   const [loading, setLoading] = useState(true)
 
   const getPost = () => {
-    axios.get(`/api/posts/${id}`)
+    axios.get(`http://localhost:3001/api/posts/${id}`)
     .then( res => {
       setPost(res.data)
       setLoading(false)
@@ -21,7 +21,7 @@ export default function Post() {
 
   const deletePost = (e) => {
     e.preventDefault()
-    axios.delete(`/api/posts/${ e.target.value }`)
+    axios.delete(`http://localhost:3001/api/posts/${ e.target.value }`)
     navigate('/')
   }
 
@@ -44,7 +44,7 @@ export default function Post() {
         <h3>{post.title}</h3>
         <p>{post.postbody}</p>
       </section>
-      <button onClick={() => navigate(`/posts/edit/${ post.id }`)}>Edit</button>
+      <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/edit`)}>Edit</button>
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
     </Wrapper>
     </>

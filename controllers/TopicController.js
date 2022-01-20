@@ -29,13 +29,13 @@ const getThreePosts = async (req, res) => {
     throw error;
   }
 };
+
 const getTopicPosts = async (req, res) => {
   try {
     let id = req.params.id;
     const posts = await Post.findAll({
       order: [['createdAt', 'DESC']],
       where: { topicId: id },
-      attributes: ['title', 'postbody'],
       include: [
         {
           model: Topic,

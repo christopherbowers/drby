@@ -2,7 +2,7 @@ import Client from './api'
 
 export const LogInUser = async (data) => {
   try {
-    const res = await Client.post('/api/auth/login', data)
+    const res = await Client.post('http://localhost:3001/api/auth/login', data)
     // Set the current signed in users token to localstorage
     localStorage.setItem('token', res.data.token)
     return res.data.user
@@ -13,7 +13,7 @@ export const LogInUser = async (data) => {
 
 export const RegisterUser = async (data) => {
   try {
-    const res = await Client.post('/api/auth/register', data)
+    const res = await Client.post('http://localhost:3001/api/auth/register', data)
     console.log(data)
     return res.data
   } catch (error) {
@@ -24,7 +24,7 @@ export const RegisterUser = async (data) => {
 export const CheckSession = async () => {
   try {
     // Checks if the current token if it exists is valid
-    const res = await Client.get('/api/auth/session')
+    const res = await Client.get('http://localhost:3001/api/auth/session')
     return res.data
   } catch (error) {
     throw error

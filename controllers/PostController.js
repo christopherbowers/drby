@@ -77,6 +77,5 @@ module.exports = {
   getPostById,
   createPost,
   updatePost,
-  deletePost,
-  getPostWithVotes
+  deletePost
 };
