@@ -12,7 +12,6 @@ export default function CreatePost({user}){
     useEffect(() => {
       axios.get(`${BASE_URL}/topics/`)
       .then(res=>{
-        console.log(res.data)
         setTopics(res.data)
         setLoading(false)
       })

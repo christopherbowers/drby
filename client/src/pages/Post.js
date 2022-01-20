@@ -14,7 +14,7 @@ export default function Post() {
   const [loading, setLoading] = useState(true)
 
   const getPost = () => {
-    axios.get(`http://localhost:3001/api/posts/${id}`)
+    axios.get(`${BASE_URL}/posts/${id}`)
     .then( res => {
       setPost(res.data)
       setLoading(false)
@@ -24,7 +24,7 @@ export default function Post() {
   const deletePost = (e) => {
     e.preventDefault()
     axios.delete(`${BASE_URL}/posts/${ e.target.value }`)
-    navigate('/')
+    navigate(`/topics/${topicId}`)
   }
 
   useEffect(() => {
