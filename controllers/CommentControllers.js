@@ -1,22 +1,40 @@
-const { Comment } = require('../models');
+const { Comment, User } = require('../models');
 
 const getComments = async (req, res) => {
   try {
-    const comments = await Comment.findAll()
-    res.send(comments)
+    const comments = await Comment.findAll();
+    res.send(comments);
   } catch (error) {
-      throw error;
+    throw error;
   }
-}
+};
 
 const getCommentById = async (req, res) => {
   try {
-    const comment = await Comment.findByPk(req.params.id)
-    res.send(comment)
+    let id = req.params.id;
+    const commentWithName = await Comment.findByPk(req.params.id, {
+      where: { postId: id },
+      include: [
+        {
+          model: User,
+          attributes: ['firstName', 'lastName']
+        }
+      ]
+    });
+    res.send(commentWithName);
   } catch (error) {
-      throw error
+    throw error;
   }
-}
+};
+
+// const getCommentById = async (req, res) => {
+//   try {
+//     const comment = await Comment.findByPk(req.params.id);
+//     res.send(comment);
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 const createComment = async (req, res) => {
   try {
