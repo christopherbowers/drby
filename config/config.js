@@ -2,7 +2,7 @@ require('dotenv').config();
 module.exports = {
   development: {
     database: 'drby_development',
-    dialect: 'postgres'
+    dialect: 'postgres',
   },
   test: {
     database: 'drby_test',
