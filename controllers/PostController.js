@@ -9,27 +9,18 @@ const getAllPosts = async (req, res) => {
     }
   }
 
-const getPostById = async (req, res) => {
-  try {
-    const post = await Post.findByPk(req.params.id)
-    res.send(post)
-  } catch (error) {
-      throw error
-  }
-}
-
 const getPostComments = async (req, res) => {
   try {
     let id = req.params.id;
     const comments = await Comment.findAll({
       where: { postId: id },
-      // include: [
-      //   {
-      //     model: Post,
-      //     required: true,
-      //     attributes: ['title', 'postbody']
-      //   }
-      // ]
+      include: [
+        {
+          model: Post,
+          required: true,
+          attributes: ['title', 'postbody']
+        }
+      ]
     })
     res.send(comments);
   } catch (error) {
@@ -74,7 +65,6 @@ const deletePost = async (req, res) => {
 
 module.exports = {
     getAllPosts,
-    getPostById,
     getPostComments,
     createPost,
     updatePost,
