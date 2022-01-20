@@ -10,8 +10,6 @@ export default function Topic() {
   const { topicId } = useParams()
   const navigate = useNavigate()
 
-  console.log(topicId)
-
   const [topic, setTopic] = useState()
   const [loading, setLoading] = useState(true)
 
