@@ -52,51 +52,12 @@ export default function HomeTest() {
     <>
     <Wrapper>
         <section>
-        <h1>Music</h1>
+        <h1>{topic1.title}</h1>
         {topic1.length > 0 && (
             <div>
                 {topic1.map((topic) => (
                     <div key={topic.id}>
-                    <Link to={(`/topics/1/posts/${topic.id}`)}>{topic.title}</Link>
-                    <p>{topic.postbody}</p>
-            </div>
-                ))}
-                </div>
-        )}
-        </section>
-        <section>
-        <h1>Games</h1>
-        {topic2.length > 0 && (
-            <div>
-                {topic2.map((topic) => (
-                    <div key={topic.id}>
-                    <Link to={(`/topics/2/posts/${topic.id}`)}>{topic.title}</Link>
-                    <p>{topic.postbody}</p>
-            </div>
-                ))}
-                </div>
-        )}
-        </section>
-        <section>
-        <h1>Random Stuff</h1>
-        {topic3.length > 0 && (
-            <div>
-                {topic3.map((topic) => (
-                    <div key={topic.id}>
-                    <Link to={(`/topics/2/posts/${topic.id}`)}>{topic.title}</Link>
-                    <p>{topic.postbody}</p>
-            </div>
-                ))}
-                </div>
-        )}
-        </section>
-        <section>
-        <h1>Cycling</h1>
-        {topic4.length > 0 && (
-            <div>
-                {topic4.map((topic) => (
-                    <div key={topic.id}>
-                    <Link to={(`/topics/2/posts/${topic.id}`)}>{topic.title}</Link>
+                    <Link to={(`/topics/${topicId}/posts/${id}`)}>{topic.title}</Link>
                     <p>{topic.postbody}</p>
             </div>
                 ))}

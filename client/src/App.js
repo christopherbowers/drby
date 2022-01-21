@@ -14,7 +14,7 @@ import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
 import EditComment from './components/EditComment'
-
+import HomeTest from './pages/HomeTest'
 
 export default function App() {
 
@@ -94,7 +94,7 @@ export default function App() {
       <Route path="/" element={<Home topics={topics} />} />
       <Route path="/topics/:topicId" element={<Topic />} />
       <Route path="/topics/:topicId/posts/:id" element={<Post authedUser={authedUser}/>}/>
-      <Route path="/createpost" element={<CreatePost user={user}/>} />
+      <Route path="/createpost" element={<CreatePost authedUser={authedUser}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
       <Route path="/user" element={<User authedUser={authedUser} />} />
       <Route path="/topics/:topicId/posts/:id/:commentId/edit" element={<EditComment />} />
