@@ -5,11 +5,13 @@ import axios from 'axios'
 import { BASE_URL } from '../globals'
 import Comment from '../components/Comment'
 import CreateComment from '../components/CreateComment'
+import Upvote from '../components/Upvote'
+import Downvote from '../components/Downvote'
 
 
 export default function Post({authedUser}) {
 
-  const { topic, id, topicId} = useParams()
+  const { topic, id, topicId } = useParams()
   const navigate = useNavigate()
 
   const [post, setPost] = useState()
@@ -33,10 +35,11 @@ export default function Post({authedUser}) {
     getPost()
   }, [id])
 
-
+  
   if (loading) {
     return ( <div>Loading...</div> )
   }
+  // console.log(post)
 
   return (
     <>
@@ -50,6 +53,8 @@ export default function Post({authedUser}) {
         <p>{post.postbody}</p>
         <p>{post.imgURL}</p>
       </section>
+      <Upvote upvote={post.upvote} getPost={getPost}/>
+      <Downvote downvote={post.downvote} getPost={getPost} />
       <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/edit`)}>Edit</button>
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
       <div className="comment">
