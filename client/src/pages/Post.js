@@ -41,6 +41,7 @@ export default function Post({authedUser}) {
   }
   // console.log(post)
 
+
   return (
     <>
     <Wrapper>
@@ -72,4 +73,7 @@ const Wrapper = styled.div`
   }
 
   color: hsla(156, 20%, 5%, 1);
+
+  padding: 20px;
+
 `
