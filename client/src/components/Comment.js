@@ -44,8 +44,8 @@ export default function Comment() {
         <Wrapper>
             {comments.map((comment) => (
             <div key={comment.id}>
-                <h2>{comment.User.firstName}</h2>
-                <h3>{comment.body}</h3>
+                <p>{comment.User.firstName}</p>
+                <p>{comment.body}</p>
 {/*                 <h3>{comment.createdAt}</h3> */}
                 <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/${comment.id}/edit`)}>Edit</button>
                 <button onClick={(e) => {e.preventDefault(); commentDelete(comment.id)}}>Delete</button>
