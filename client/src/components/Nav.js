@@ -2,7 +2,21 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/drby.svg'
 
-const Navbar = ({topics, user}) => {
+const Navbar = ({
+  topics,
+  authenticated,
+  toggleAuthenticated,
+  setUser,
+  authedUser,
+}) => {
+
+  const logout = (e) => {
+    toggleAuthenticated(false)
+    setUser(null)
+    localStorage.clear()
+  }
+
+{/* console.log() */}
 
   return (
     <Nav className="navbar">
@@ -17,10 +31,9 @@ const Navbar = ({topics, user}) => {
         ))
       }
       <Link to='/createpost'>Create a Post</Link>
-      <div className="profile-link">
-      <Link to="/login">
-        {user === "" ? '💔' : '❤️'}
-      </Link>
+      <div className="flex-right">
+        <Link to="/user" className="user-link">Hello {authedUser.firstName}</Link>
+        <Link to="/" className="profile-link" onClick={logout}>Logout</Link>
       </div>
     </Nav>
   )
@@ -32,6 +45,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   align-content: space-between;
+  padding: 5px 10px;
 
   a {
     text-decoration: none;
@@ -46,21 +60,31 @@ const Nav = styled.nav`
     border: solid 3px hsla(252, 51%, 24%, 1);
   }
 
-  .profile-link {
+  .flex-right {
     margin-left: auto;
   }
 
-  .profile-link a {
+  .profile-link {
     background-color: hsl(339, 100%, 79%);
     color: white;
     border: 3px solid transparent;
-    border-radius: 50%;
+    border-radius: 6px;
     display: inline-block;
-    height: 40px;
-    width: 40px;
   }
 
   .profile-link a:hover {
+    border: solid 3px hsla(252, 51%, 24%, 1);
+  }
+
+  .user-link {
+    background-color: hsla(252, 51%, 24%, .5);
+    color: white;
+    border: 3px solid transparent;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  .user-link a:hover {
     border: solid 3px hsla(252, 51%, 24%, 1);
   }
 
