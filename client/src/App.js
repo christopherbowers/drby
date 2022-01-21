@@ -15,7 +15,7 @@ import Topic from './pages/Topic'
 import User from './pages/User'
 import EditPost from './components/EditPost'
 import EditComment from './components/EditComment'
-
+import HomeTest from './pages/HomeTest'
 
 export default function App() {
 
