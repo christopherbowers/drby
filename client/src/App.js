@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import GlobalStyle from './components/GlobalStyle'
-import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -14,7 +13,7 @@ import User from './pages/User'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
-import Comment from './components/Comment'
+import EditComment from './components/EditComment'
 
 
 export default function App() {
@@ -98,6 +97,7 @@ export default function App() {
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
       <Route path="/user" element={<User authedUser={authedUser} />} />
+      <Route path="/topics/:topicId/posts/:id/:commentId/edit" element={<EditComment />} />
       </>
       ) : (
       <>

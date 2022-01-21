@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../globals';
 import styled from 'styled-components';
+import EditComment from './EditComment';
 
 export default function Comment() {
 
@@ -47,7 +48,7 @@ export default function Comment() {
                 <h2>{comment.User.firstName}</h2>
                 <h3>{comment.body}</h3>
                 <h3>{comment.createdAt}</h3>
-                <button onClick={() => navigate(`/posts/${id}`)}>Edit</button>
+                <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/${comment.id}/edit`)}>Edit</button>
                 <button onClick={(e) => {e.preventDefault(); commentDelete(comment.id)}}>Delete</button>
             </div>
             ))}
