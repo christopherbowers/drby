@@ -15,6 +15,8 @@ export default function Topic() {
 
   const [topicTitle, setTopicTitle] = useState()
 
+  console.log(BASE_URL)
+
   const getTopicPosts = () => {
     axios.get(`${BASE_URL}/topics/${topicId}`)
     .then( res => {
