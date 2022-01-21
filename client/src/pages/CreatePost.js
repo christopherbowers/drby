@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 
 
 export default function CreatePost({user, authedUser}){
 
-    const { id } = useParams()
     const navigate = useNavigate()
 
     const [topics, setTopics] = useState([])
@@ -29,7 +28,7 @@ export default function CreatePost({user, authedUser}){
       const userId = authedUser.id;
       const topicId = event.target.topic.value;
 
-      const test = await axios.post(
+      await axios.post(
         `${BASE_URL}/posts`,
         {
           title,
