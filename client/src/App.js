@@ -94,7 +94,7 @@ export default function App() {
       <>
       <Route path="/" element={<Home topics={topics} />} />
       <Route path="/topics/:topicId" element={<Topic />} />
-      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
+      <Route path="/topics/:topicId/posts/:id" element={<Post authedUser={authedUser}/>}/>
       <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
       <Route path="/user" element={<User authedUser={authedUser} />} />

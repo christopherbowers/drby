@@ -5,36 +5,37 @@ import axios from 'axios'
 
 export default function CreateComment({authedUser}){
 
-    const { id, topicId } = useParams();
+    const { topicId, id} = useParams();
     const navigate = useNavigate();
 
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
+    const fetchData = async () =>{
+        const res = await axios.get(`${BASE_URL}/comments/`)
+        setComments(res.data)
+        setLoading(false)
+    }
+
     useEffect(() => {
-        axios.get(`${BASE_URL}/comments/`)
-        .then(res =>{
-            console.log(res.data)
-            setComments(res.data)
-            setLoading(false)
-        })
-    }, [])
+        fetchData()
+    }, []);
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
 
         const userId = authedUser.id;
         const body = event.target.body.value;
-        const postId = event.target.post.value;
-
+        const postId = id;
+        console.log(id)
         const test = await axios.post(`${BASE_URL}/comments`,
         {
           userId,
           body,
           postId
         }
-      ) 
-      navigate(`/topics/${topicId}/posts/${postId}`)
+        ) 
+        setComments([...comments, test])
     };
 
     if (loading) {

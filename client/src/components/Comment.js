@@ -15,7 +15,7 @@ export default function Comment() {
 
     const fetchData = async () =>{
         const res = await axios.get(`${BASE_URL}/comments/${id}`)
-        console.log(res.data[0].User.firstName);
+        // console.log(res.data[0].User.firstName);
         setUsers(res.data.User);
         setComments(res.data);
         setLoading(false);

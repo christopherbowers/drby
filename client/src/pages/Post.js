@@ -4,9 +4,10 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
 import Comment from '../components/Comment'
+import CreateComment from '../components/CreateComment'
 
 
-export default function Post() {
+export default function Post({authedUser}) {
 
   const { topic, id, topicId} = useParams()
   const navigate = useNavigate()
@@ -53,6 +54,7 @@ export default function Post() {
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
       <div className="comment">
       <Comment />
+      <CreateComment authedUser={authedUser}/>
       </div>
     </Wrapper>
     </>
