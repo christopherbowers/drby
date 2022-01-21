@@ -35,10 +35,11 @@ export default function Post({authedUser}) {
     getPost()
   }, [id])
 
-
+  
   if (loading) {
     return ( <div>Loading...</div> )
   }
+  // console.log(post)
 
 
   return (

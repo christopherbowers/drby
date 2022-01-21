@@ -12,6 +12,7 @@ module.exports = {
           postbody: faker.lorem.sentence(),
           upvote: faker.datatype.number({ max: 10 }),
           downvote: faker.datatype.number({ max: 10 }),
+          topicId: faker.datatype.number({ min: 1, max: 4 }),
           userId: user.id,
           createdAt: new Date(),
           updatedAt: new Date()

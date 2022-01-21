@@ -23,23 +23,16 @@ export default function HomeTest() {
   `${BASE_URL}/topics/home/2`,
   `${BASE_URL}/topics/home/3`,
   `${BASE_URL}/topics/home/4`
-]
+  ]
     Promise.all(endPoints.map((endPoint) => axios.get(endPoint))).then(([{data:topic1}, {data:topic2}, {data:topic3}, {data:topic4}]) => {
         setTopic1(topic1)
         setTopic2(topic2)
         setTopic3(topic3)
         setTopic4(topic4)
     })
-    // axios.all(endPoints.map((endPoint) =>
-    // axios.get(endPoint))).then(
-    // //   (data) => console.log(data)
-    // axios.spread((topic1, topic2, topic3, topic4) => {
-    //     console.log({topic1, topic2, topic3, topic4})
-    // })
-    // )
     setLoading(false)
   }
-//   console.log(topic2)
+
   useEffect(() => {
     getThreeTopicPosts()
   }, [])
@@ -116,3 +109,4 @@ const Wrapper = styled.div`
   color: hsla(156, 20%, 5%, 1);
   padding: 20px;
 `
+
