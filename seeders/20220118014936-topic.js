@@ -15,7 +15,7 @@ module.exports = {
     updatedAt: new Date()
     },
     {
-    name: 'Topic 3',
+    name: 'Random Stuff',
     createdAt: new Date(),
     updatedAt: new Date()
     },
