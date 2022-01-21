@@ -27,14 +27,13 @@ export default function CreateComment({authedUser}){
         const userId = authedUser.id;
         const body = event.target.body.value;
         const postId = id;
-        console.log(id)
         const test = await axios.post(`${BASE_URL}/comments`,
         {
           userId,
           body,
           postId
         }
-        ) 
+        )
         setComments([...comments, test])
     };
 

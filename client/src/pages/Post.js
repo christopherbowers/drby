@@ -46,13 +46,14 @@ export default function Post({authedUser}) {
       </div>
       <section>
         <h3>{post.title}</h3>
-        <p>{post.createdAt}</p>
+{/*         <p>{post.createdAt}</p> */}
         <p>{post.postbody}</p>
         <p>{post.imgURL}</p>
       </section>
       <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/edit`)}>Edit</button>
       <button onClick={(e) => deletePost(e)} value={ post.id }>Delete</button>
       <div className="comment">
+      <h4>Comments</h4>
       <Comment />
       <CreateComment authedUser={authedUser}/>
       </div>
