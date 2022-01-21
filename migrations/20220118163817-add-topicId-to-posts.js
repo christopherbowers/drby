@@ -8,6 +8,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    // return queryInterface.removeColumn('posts', 'topicId');
+    return queryInterface.removeColumn('posts', 'topicId');
   }
 };
