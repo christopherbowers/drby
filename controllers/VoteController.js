@@ -26,7 +26,7 @@ const updateVote = async (req, res) => {
   }
 };
 
-Model.exports = {
+module.exports = {
   deleteVote,
   updateVote
 };
