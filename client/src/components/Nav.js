@@ -16,8 +16,6 @@ const Navbar = ({
     localStorage.clear()
   }
 
-{/* console.log() */}
-
   return (
     <Nav className="navbar">
       <Link to="/" className="logo">

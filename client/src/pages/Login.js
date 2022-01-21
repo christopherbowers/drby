@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogInUser } from '../services/Auth'
-import logo from '../assets/drby.svg'
+import kirbystar from '../assets/kirbystar.gif'
 import styled from 'styled-components'
 
 export default function Login(props) {
@@ -31,7 +31,7 @@ export default function Login(props) {
     <Wrapper>
       <div className='login-page'>
         <div className='login-icon'>
-          <img src={logo} alt="drby" />
+          <img src={kirbystar} alt="kirby star" />
         </div>
         <form className='login-form' onSubmit={handleSubmit}>
           <div className='input-box'>
