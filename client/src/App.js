@@ -10,9 +10,11 @@ import Post from './pages/Post'
 import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
 import Topic from './pages/Topic'
+import User from './pages/User'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
+import Comment from './components/Comment'
 
 
 export default function App() {
@@ -21,13 +23,14 @@ export default function App() {
 
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const [authedUser, setAuthedUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [topics, setTopics] = useState(null)
 
   const checkToken = async () => {
     //If a token exists, sends token to localstorage to persist logged in user
     const user = await CheckSession()
-    setUser(user)
+    // setUser(user)
     toggleAuthenticated(true)
   }
 
@@ -40,22 +43,40 @@ export default function App() {
     })
   }
 
+  const getAuthedUser = async () => {
+    const id = localStorage.getItem('id')
+    axios.get(`${BASE_URL}/users/${id}`)
+    .then( res => {
+      setAuthedUser(res.data)
+    })
+  }
+
 
   useEffect(() => {
     document.title = 'drby'
-    getTopics()
     const token = localStorage.getItem('token')
     // Check if token exists before requesting to validate the token
     if (token) {
+      getTopics()
       checkToken()
+      getAuthedUser()
     }
   }, [])
 
+
   const showNav = () => {
-    if (location.pathname === '/login' || location.pathname === '/register' ) {
+    if (!authenticated) {
       return null
     } else {
-     return <Nav topics={topics} />
+     return (
+       <Nav
+        topics={topics}
+        authenticated={authenticated}
+        toggleAuthenticated={toggleAuthenticated}
+        setUser={setUser}
+        authedUser={authedUser}
+      />
+     )
     }
   }
 
@@ -69,24 +90,30 @@ export default function App() {
     <GlobalStyle />
     { showNav() }
     <Routes>
+    {authenticated ? (
+      <>
+      <Route path="/" element={<Home topics={topics} />} />
+      <Route path="/topics/:topicId" element={<Topic />} />
+      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
+      <Route path="/createpost" element={<CreatePost user={user}/>} />
+      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
+      <Route path="/user" element={<User authedUser={authedUser} />} />
+      </>
+      ) : (
+      <>
       <Route
-        path="/login"
+        path="/"
         element={
           <Login
           setUser={setUser}
           toggleAuthenticated={toggleAuthenticated}
           /> }
       />
-      {/*<Route
-        path="/"
-        element={<ProtectedRoute authenticated={authenticated} user={user} component={Home} />}
-      />*/}
-      <Route path="/" element={<Home topics={topics} />}/>
-      <Route path="/topics/:topicId" element={<Topic />} />
-      <Route path="/topics/:topicId/posts/:id" element={<Post />}/>
-      <Route path="/createpost" element={<CreatePost user={user}/>} />
       <Route path="/register" element={<Register />} />
-      <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
+      </>
+      )}
+
+
     </Routes>
 
   </>

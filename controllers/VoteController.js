@@ -1,5 +1,15 @@
 const { Vote } = require('../models');
 
+const createVote = async (req, res) => {
+  try {
+    let voteBody = req.body;
+    let vote = await Vote.create(voteBody);
+    res.send(vote);
+  } catch (error) {
+    throw error;
+  }
+};
+
 const deleteVote = async (req, res) => {
   try {
     let voteId = parseInt(req.params.vote_id);
@@ -28,5 +38,6 @@ const updateVote = async (req, res) => {
 
 module.exports = {
   deleteVote,
-  updateVote
+  updateVote,
+  createVote
 };
