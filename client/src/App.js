@@ -103,6 +103,7 @@ export default function App() {
           <Login
           setUser={setUser}
           toggleAuthenticated={toggleAuthenticated}
+          getAuthedUser={getAuthedUser}
           /> }
       />
       <Route path="/register" element={<Register />} />

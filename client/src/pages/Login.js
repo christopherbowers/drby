@@ -22,6 +22,7 @@ export default function Login(props) {
     props.setUser(payload)
     // set user, toggle authenticated true
     props.toggleAuthenticated(true)
+    props.getAuthedUser()
     // redirect to home page
     navigate('/')
   }
