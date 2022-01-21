@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 import GlobalStyle from './components/GlobalStyle'
-import ProtectedRoute from './components/ProtectedRoute'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -14,12 +13,9 @@ import User from './pages/User'
 import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
 import { BASE_URL } from './globals'
-import Comment from './components/Comment'
 
 
 export default function App() {
-
-  const location = useLocation()
 
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
@@ -30,7 +26,7 @@ export default function App() {
   const checkToken = async () => {
     //If a token exists, sends token to localstorage to persist logged in user
     const user = await CheckSession()
-    // setUser(user)
+    setUser(user)
     toggleAuthenticated(true)
   }
 
@@ -54,10 +50,10 @@ export default function App() {
 
   useEffect(() => {
     document.title = 'drby'
+    getTopics()
     const token = localStorage.getItem('token')
     // Check if token exists before requesting to validate the token
     if (token) {
-      getTopics()
       checkToken()
       getAuthedUser()
     }
@@ -95,7 +91,7 @@ export default function App() {
       <Route path="/" element={<Home topics={topics} />} />
       <Route path="/topics/:topicId" element={<Topic />} />
       <Route path="/topics/:topicId/posts/:id" element={<Post authedUser={authedUser}/>}/>
-      <Route path="/createpost" element={<CreatePost user={user}/>} />
+      <Route path="/createpost" element={<CreatePost authedUser={authedUser}/>} />
       <Route path="/topics/:topicId/posts/:id/edit" element={<EditPost />} />
       <Route path="/user" element={<User authedUser={authedUser} />} />
       </>
@@ -107,6 +103,7 @@ export default function App() {
           <Login
           setUser={setUser}
           toggleAuthenticated={toggleAuthenticated}
+          getAuthedUser={getAuthedUser}
           /> }
       />
       <Route path="/register" element={<Register />} />
