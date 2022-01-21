@@ -1,21 +1,24 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { BASE_URL } from '../globals'
+import { useParams } from 'react-router-dom'
 
-export default function Upvote({ id, upVoteCounter }){
-    const [upVote, setUpVote] = useState(upVoteCounter);
-
+export default function Upvote({upvote, getPost}){
+    const { id } = useParams()
+    const [upVoteCounter, setUpVoteCounter] = useState(upvote);
+    console.log(upVoteCounter)
     const handleClick = async () => {
-        let data = await axios.put(`${BASE_URL}/posts/${id}`, {
-            upvote: upVote + 1
+        const voteUp = upVoteCounter +1
+        let res = await axios.put(`${BASE_URL}/posts/${id}`, {
+            upvote: voteUp
         })
-        console.log(data.data.upVoteCounter)
-        setUpVote(data.data.upVoteCounter)
+        setUpVoteCounter(voteUp)
+        getPost()
     }
 
     return (
         <>
-        <h3>{upVoteCounter}</h3>
+        <h3>{upvote}</h3>
         <button onClick={() => {handleClick() }}>upvote</button>
         </>
     )
