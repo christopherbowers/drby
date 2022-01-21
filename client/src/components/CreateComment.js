@@ -23,18 +23,19 @@ export default function CreateComment({authedUser}){
     }, []);
 
     const handleSubmit = async (event) => {
-
+        event.preventDefault()
         const userId = authedUser.id;
         const body = event.target.body.value;
         const postId = id;
-        const test = await axios.post(`${BASE_URL}/comments`,
+        // const test =
+        await axios.post(`${BASE_URL}/comments`,
         {
           userId,
           body,
           postId
         }
         )
-        setComments([...comments, test])
+        // setComments([...comments, test])
     };
 
     if (loading) {
