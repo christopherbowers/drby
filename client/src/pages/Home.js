@@ -108,5 +108,12 @@ const Wrapper = styled.div`
 
   color: hsla(156, 20%, 5%, 1);
   padding: 20px;
+
+  section a {
+    font-size: 1.2em;
+  }
+  p {
+    margin: 0 0 0 10px;
+  }
 `
 
