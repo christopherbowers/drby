@@ -55,7 +55,16 @@ const deleteUser = async (req, res) => {
     throw error;
   }
 };
+// const addAvatar = async (req, res) => {
+//   try {
+//     let userId = parseInt(req.params.user_id);
+//     await sequelize.query({"INSERT INTO  "}
 
+//     })
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 module.exports = {
   getAllUsers,
   createUser,

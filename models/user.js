@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
+      userAvatar: DataTypes.STRING,
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
       email: {
@@ -32,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
       postId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE'
-      },
+      }
     },
     {
       sequelize,
