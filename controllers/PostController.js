@@ -1,5 +1,6 @@
 const { Post, Vote, Comment, User } = require('../models');
 const { Op } = require('sequelize');
+const { user } = require('pg/lib/defaults');
 
 const getAllPosts = async (req, res) => {
   try {
@@ -42,6 +43,10 @@ const getPostById = async (req, res) => {
         {
           model: Vote,
           attributes: ['upVoteCounter', 'downVoteCounter']
+        },
+        {
+          model: User,
+          attributes: ['firstName']
         }
       ]
     });

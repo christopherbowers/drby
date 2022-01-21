@@ -3,29 +3,37 @@ import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BASE_URL } from '../globals';
 import styled from 'styled-components';
+import EditComment from './EditComment';
 
 export default function Comment() {
 
-    const { id } = useParams();
+    const { id, topicId } = useParams();
     const navigate = useNavigate();
 
     const [comments, setComments] = useState([]);
     const [users, setUsers] = useState({});
-    // const []
     const [loading, setLoading] = useState(true);
 
-    console.log(id)
+    const fetchData = async () =>{
+        const res = await axios.get(`${BASE_URL}/comments/${id}`)
+        setUsers(res.data.User);
+        setComments(res.data);
+        setLoading(false);
+    }
+
     useEffect(() => {
-        async function fetchData() {
-            const res = await axios.get(`${BASE_URL}/comments/${id}`)
-            console.log(res.data);
-            console.log(res.data[0].User.firstName);
-            setUsers(res.data.User);
-            setComments(res.data);
-            setLoading(false);
-        }
         fetchData()
     }, []);
+
+    const commentDelete = async (commentId) => {
+        await axios.delete(`${BASE_URL}/comments/${commentId}`)
+        .then( res => {
+        navigate(`/topics/${topicId}/posts/${id}`)
+        fetchData()
+        }) .catch((error) =>{
+            console.log(error)
+        })
+    }
 
     if (loading) {
         return ( <div>Loading...</div> )
@@ -38,7 +46,9 @@ export default function Comment() {
             <div key={comment.id}>
                 <h2>{comment.User.firstName}</h2>
                 <h3>{comment.body}</h3>
-                <h3>{comment.createdAt}</h3>
+{/*                 <h3>{comment.createdAt}</h3> */}
+                <button onClick={() => navigate(`/topics/${topicId}/posts/${id}/${comment.id}/edit`)}>Edit</button>
+                <button onClick={(e) => {e.preventDefault(); commentDelete(comment.id)}}>Delete</button>
             </div>
             ))}
         </Wrapper>

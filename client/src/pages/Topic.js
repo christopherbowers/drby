@@ -39,7 +39,7 @@ export default function Topic() {
         <h2>{topicTitle}</h2>
         {
           topic.map((topic) => (
-            <div key={topic.id}>
+            <div key={topic.id} className="post">
             <Link to={(`/topics/${topic.topicId}/posts/${topic.id}`)}>{topic.title}</Link>
             </div>
           ))
@@ -56,4 +56,9 @@ const Wrapper = styled.div`
   }
 
   color: hsla(156, 20%, 5%, 1);
+  padding: 20px;
+
+  .post {
+    padding: 10px;
+  }
 `

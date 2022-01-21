@@ -13,16 +13,16 @@ const getThreePosts = async (req, res) => {
   try {
     let id = req.params.id;
     const posts = await Post.findAll({
-      where: { topicId: id },
       limit: 3,
+      order: [['createdAt', 'DESC']],
+      where: { topicId: id },
       include: [
         {
           model: Topic,
           required: true,
           attributes: ['name']
         }
-      ],
-      order: sequelize.random()
+      ]
     });
     res.send(posts);
   } catch (error) {
