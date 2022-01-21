@@ -17,12 +17,12 @@ export default function HomeTest() {
   const [topic4, setTopic4] = useState([])
 
   const getThreeTopicPosts = () => {
-  
+
   const endPoints = [
   `${BASE_URL}/topics/home/1`,
   `${BASE_URL}/topics/home/2`,
   `${BASE_URL}/topics/home/3`,
-  `${BASE_URL}/topics/home/4` 
+  `${BASE_URL}/topics/home/4`
 ]
     Promise.all(endPoints.map((endPoint) => axios.get(endPoint))).then(([{data:topic1}, {data:topic2}, {data:topic3}, {data:topic4}]) => {
         setTopic1(topic1)
@@ -30,7 +30,7 @@ export default function HomeTest() {
         setTopic3(topic3)
         setTopic4(topic4)
     })
-    // axios.all(endPoints.map((endPoint) => 
+    // axios.all(endPoints.map((endPoint) =>
     // axios.get(endPoint))).then(
     // //   (data) => console.log(data)
     // axios.spread((topic1, topic2, topic3, topic4) => {
@@ -114,4 +114,5 @@ const Wrapper = styled.div`
   }
 
   color: hsla(156, 20%, 5%, 1);
+  padding: 20px;
 `

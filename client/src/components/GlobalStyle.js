@@ -81,6 +81,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  h1,
   h2,
   h3 {
     color: var(--paradise-pink);
