@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import axios from 'axios'
 import GlobalStyle from './components/GlobalStyle'
+import { BASE_URL } from './globals'
+import { CheckSession } from './services/Auth'
+import axios from 'axios'
+import Loading from './components/Loading'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -10,9 +13,7 @@ import CreatePost from './pages/CreatePost'
 import Nav from './components/Nav'
 import Topic from './pages/Topic'
 import User from './pages/User'
-import { CheckSession } from './services/Auth'
 import EditPost from './components/EditPost'
-import { BASE_URL } from './globals'
 import EditComment from './components/EditComment'
 
 
@@ -79,7 +80,7 @@ export default function App() {
 
 
   if (loading) {
-    return ( <div>Loading...</div> )
+    return ( <><Loading /></> )
   }
 
   return (
