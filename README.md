@@ -4,21 +4,21 @@
 </p>
 
 
-## A Full Stack form web application by:
+## 📝 A Full Stack form web application by:
 
-- Annika Truong ([Github](https://github.com/atruong0914) | [/In](https://www.linkedin.com/in/annikatruong/))
 - Christopher Bowers ([Github](https://github.com/christopherbowers) | [/In](https://www.linkedin.com/in/christopher-bowers-dev))
+- Annika Truong ([Github](https://github.com/atruong0914) | [/In](https://www.linkedin.com/in/annikatruong/))
 - Christopher Zeas ([Github](https://github.com/chriszc97) | [/In](www.linkedin.com/in/christopher-zeas))
 - Cristen Negron ([Github](https://github.com/cristennegron) | [/In](https://www.linkedin.com/in/cristennegron/))
 
-## Technologies
+## 🧑‍💻 Technologies
 
 - React
 - Express
 - PostgreSQL
-- Node
+- Node.js
 
 
-## Deployed Site on Heroku
+## 🚀 Site on Heroku
 
 <https://drby-app.herokuapp.com/>
